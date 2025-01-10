@@ -17,7 +17,7 @@ function App() {
     }, []);
 
     const contents = questions === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
+        ? <p><em>Loading...</em></p>
         : <table className="table-striped table" aria-labelledby="tableLabel">
             <thead>
                 <tr>
@@ -42,7 +42,7 @@ function App() {
     );
 
     async function populateQuestionData() {
-        const response = await fetch('questions');
+        const response = await fetch('api/questions');
         if (response.ok) {
             const data = await response.json();
             setQuestions(data);

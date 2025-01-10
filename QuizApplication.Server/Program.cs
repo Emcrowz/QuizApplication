@@ -1,11 +1,21 @@
+using Microsoft.EntityFrameworkCore;
+using QuizApplication.DataAccess.Context;
+using QuizApplication.DataAccess.Contracts;
+using QuizApplication.DataAccess.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+#region Services/Repositories
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+builder.Services.AddDbContext<QuizDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("SQLite")));
+
+builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+#endregion
 
 var app = builder.Build();
 
@@ -18,10 +28,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
 
 app.MapControllers();
 
