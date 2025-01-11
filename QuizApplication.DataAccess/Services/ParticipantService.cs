@@ -6,13 +6,17 @@ using QuizApplication.DataAccess.Services.Contracts;
 
 namespace QuizApplication.DataAccess.Services;
 
-public class QuestionService(QuizDbContext context) : IQuestionService
+public class ParticipantService(QuizDbContext context) : IParticipantService
 {
-    private readonly IQuestionRepository _repository = new QuestionRepository(context);
+    private readonly IParticipantRepository _repository = new ParticipantRepository(context);
 
-    public async Task<IEnumerable<Question>> GetQuestionsAsync()
+    public async Task<IEnumerable<Participant>> GetParticipantsAsync()
     {
         return await _repository.GetAllAsync();
     }
 
+    public async Task PostParticipantAsync(Participant entity)
+    {
+        await _repository.AddAsync(entity);
+    }
 }

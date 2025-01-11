@@ -15,6 +15,7 @@ builder.Services.AddDbContext<QuizDbContext>(options =>
 
 // DI Containers
 builder.Services.AddScoped<IQuestionService, QuestionService>();
+builder.Services.AddScoped<IParticipantService, ParticipantService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
