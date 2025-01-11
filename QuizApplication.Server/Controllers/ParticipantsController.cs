@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using QuizApplication.DataAccess.Models;
+using QuizApplication.DataAccess.DTO;
 using QuizApplication.DataAccess.Services.Contracts;
-using QuizApplication.Server.DTO;
-using QuizApplication.Server.Helpers;
 
 namespace QuizApplication.Server.Controllers;
 
@@ -20,20 +18,13 @@ public class ParticipantsController(IParticipantService service) : ControllerBas
             return TypedResults.NoContent();
         }
 
-        List<ParticipantReadOnlyDto> data = [];
-        foreach (Participant participant in res)
-        {
-            data.Add(ModelConverter.ConvertParticipantToReadOnlyDTO<ParticipantReadOnlyDto>(participant));
-        }
-
-        return TypedResults.Ok(data);
+        return TypedResults.Ok(res);
     }
 
     [HttpPost]
     public async Task<IResult> PostParticipant(ParticipantPostDto participant)
     {
-
-        await service.PostParticipantAsync(ModelConverter.ConvertParticipantPostDtoToModel<Participant>(participant));
+        await service.PostParticipantAsync(participant);
 
         return TypedResults.Ok();
     }

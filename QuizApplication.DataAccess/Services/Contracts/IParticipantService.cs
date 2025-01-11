@@ -1,10 +1,10 @@
-﻿using QuizApplication.DataAccess.Models;
+﻿using QuizApplication.DataAccess.DTO;
 
 namespace QuizApplication.DataAccess.Services.Contracts;
 
 public interface IParticipantService
 {
-    Task<IEnumerable<Participant>> GetParticipantsAsync();
+    Task<IEnumerable<ParticipantReadOnlyDto>> GetParticipantsAsync();
 
-    Task PostParticipantAsync(Participant entity);
+    Task PostParticipantAsync(ParticipantPostDto entity);
 }

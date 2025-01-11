@@ -1,13 +1,7 @@
-﻿using QuizApplication.DataAccess.Models.Base;
+﻿using QuizApplication.DataAccess.Constants;
+using QuizApplication.DataAccess.Models.Base;
 
 namespace QuizApplication.DataAccess.Models;
-
-public enum QuestionType : byte
-{
-    Typed = 0,
-    Single = 1,
-    Multiple = 2
-}
 
 public class Question : BaseModel
 {

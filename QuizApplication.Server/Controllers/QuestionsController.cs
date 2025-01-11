@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using QuizApplication.DataAccess.Models;
 using QuizApplication.DataAccess.Services.Contracts;
-using QuizApplication.Server.DTO;
-using QuizApplication.Server.Helpers;
 
 namespace QuizApplication.Server.Controllers;
 
@@ -19,12 +16,6 @@ public class QuestionsController(IQuestionService service) : ControllerBase
             return TypedResults.NoContent();
         }
 
-        List<QuestionReadOnlyDto> data = [];
-        foreach (Question question in res)
-        {
-            data.Add(ModelConverter.ConvertQuestionToReadOnlyDTO<QuestionReadOnlyDto>(question));
-        }
-
-        return TypedResults.Ok(data);
+        return TypedResults.Ok(res);
     }
 }
