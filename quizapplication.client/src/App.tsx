@@ -13,11 +13,14 @@ function App() {
     const [questions, setQuestions] = useState<Question[]>();
 
     useEffect(() => {
-        populateQuestionData();
+        fetch('https://localhost:7219/questions')
+            .then((res) => res.json())
+            .then((data) => setQuestions(data))
+            .catch((err) => console.log(err)) // For debugging purposes.
     }, []);
 
     const contents = questions === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
+        ? <p><em>Loading...</em></p>
         : <table className="table-striped table" aria-labelledby="tableLabel">
             <thead>
                 <tr>
@@ -40,14 +43,6 @@ function App() {
             {contents}
         </div>
     );
-
-    async function populateQuestionData() {
-        const response = await fetch('questions');
-        if (response.ok) {
-            const data = await response.json();
-            setQuestions(data);
-        }
-    }
 }
 
 export default App;
