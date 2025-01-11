@@ -1,6 +1,6 @@
 ﻿using QuizApplication.DataAccess.Models;
 
-namespace QuizApplication.DataAccess.Contracts;
+namespace QuizApplication.DataAccess.Repositories.Contracts;
 
 public interface IQuestionRepository : IAbstractRepository<Question>
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QuizApplication.DataAccess.Context;
-using QuizApplication.DataAccess.Contracts;
+using QuizApplication.DataAccess.Repositories.Contracts;
 
 namespace QuizApplication.DataAccess.Repositories.Base;
 

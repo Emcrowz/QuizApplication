@@ -2,7 +2,7 @@
 
 namespace QuizApplication.DataAccess.Models;
 
-public class Participant : AbstractModel
+public class Participant : BaseModel
 {
     public string Email { get; set; }
     public string Name { get; set; }

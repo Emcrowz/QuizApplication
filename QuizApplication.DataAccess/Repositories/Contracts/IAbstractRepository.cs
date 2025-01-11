@@ -1,4 +1,4 @@
-﻿namespace QuizApplication.DataAccess.Contracts;
+﻿namespace QuizApplication.DataAccess.Repositories.Contracts;
 
 public interface IAbstractRepository<T> where T : class
 {

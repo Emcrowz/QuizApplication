@@ -1,6 +1,6 @@
 ﻿namespace QuizApplication.DataAccess.Models.Base;
 
-public class AbstractModel
+public class BaseModel
 {
     public int Id { get; set; }
 }

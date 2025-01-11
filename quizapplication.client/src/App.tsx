@@ -13,7 +13,10 @@ function App() {
     const [questions, setQuestions] = useState<Question[]>();
 
     useEffect(() => {
-        populateQuestionData();
+        fetch('https://localhost:7219/questions')
+            .then((res) => res.json())
+            .then((data) => setQuestions(data))
+            .catch((err) => console.log(err)) // For debugging purposes.
     }, []);
 
     const contents = questions === undefined
@@ -40,14 +43,6 @@ function App() {
             {contents}
         </div>
     );
-
-    async function populateQuestionData() {
-        const response = await fetch('api/questions');
-        if (response.ok) {
-            const data = await response.json();
-            setQuestions(data);
-        }
-    }
 }
 
 export default App;

@@ -7,7 +7,7 @@ using QuizApplication.DataAccess.Context;
 
 #nullable disable
 
-namespace QuizApplication.DataAccess.Migrations
+namespace QuizApplication.DataAccess.Migrations.Development
 {
     [DbContext(typeof(QuizDbContext))]
     partial class QuizDbContextModelSnapshot : ModelSnapshot
@@ -51,12 +51,11 @@ namespace QuizApplication.DataAccess.Migrations
                     b.PrimitiveCollection<string>("Choises")
                         .HasColumnType("TEXT");
 
+                    b.PrimitiveCollection<string>("CorrectOptions")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Points")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Solution")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -71,24 +70,24 @@ namespace QuizApplication.DataAccess.Migrations
                         {
                             Id = 1,
                             Choises = "[\"Option 1\",\"Option 2\",\"Option 3\",\"Option 4\"]",
+                            CorrectOptions = "[\"Option 2\"]",
                             Points = 1,
-                            Solution = "Option 2",
                             Title = "Question 1"
                         },
                         new
                         {
                             Id = 2,
                             Choises = "[\"Option 1\",\"Option 2\",\"Option 3\",\"Option 4\"]",
+                            CorrectOptions = "[\"Option 1\",\"Option 3\"]",
                             Points = 1,
-                            Solution = "Option 1",
                             Title = "Question 2"
                         },
                         new
                         {
                             Id = 3,
                             Choises = "[\"Option 1\",\"Option 2\",\"Option 3\",\"Option 4\"]",
+                            CorrectOptions = "[\"Option 4\"]",
                             Points = 1,
-                            Solution = "Option 4",
                             Title = "Question 2"
                         });
                 });
