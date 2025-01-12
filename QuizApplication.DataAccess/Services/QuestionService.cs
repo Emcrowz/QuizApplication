@@ -1,4 +1,6 @@
 ﻿using QuizApplication.DataAccess.Context;
+using QuizApplication.DataAccess.DTO;
+using QuizApplication.DataAccess.Helpers;
 using QuizApplication.DataAccess.Models;
 using QuizApplication.DataAccess.Repositories;
 using QuizApplication.DataAccess.Repositories.Contracts;
@@ -10,9 +12,17 @@ public class QuestionService(QuizDbContext context) : IQuestionService
 {
     private readonly IQuestionRepository _repository = new QuestionRepository(context);
 
-    public async Task<IEnumerable<Question>> GetQuestionsAsync()
+    public async Task<IEnumerable<QuestionReadOnlyDto>> GetQuestionsAsync()
     {
-        return await _repository.GetAllAsync();
+        var data = await _repository.GetAllAsync();
+
+        List<QuestionReadOnlyDto> dtos = [];
+        foreach (Question question in data)
+        {
+            dtos.Add(ModelConverter.ConvertQuestionToReadOnlyDTO<QuestionReadOnlyDto>(question));
+        }
+
+        return dtos;
     }
 
 }

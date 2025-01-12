@@ -1,4 +1,4 @@
-﻿namespace QuizApplication.Server.DTO;
+﻿namespace QuizApplication.DataAccess.DTO;
 
 public record ParticipantPostDto
 {

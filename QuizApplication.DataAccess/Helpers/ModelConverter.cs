@@ -1,7 +1,7 @@
-﻿using QuizApplication.DataAccess.Models;
-using QuizApplication.Server.DTO;
+﻿using QuizApplication.DataAccess.DTO;
+using QuizApplication.DataAccess.Models;
 
-namespace QuizApplication.Server.Helpers;
+namespace QuizApplication.DataAccess.Helpers;
 
 public static class ModelConverter
 {
