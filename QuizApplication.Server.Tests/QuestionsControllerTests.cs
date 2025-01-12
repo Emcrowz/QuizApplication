@@ -21,31 +21,36 @@ public class QuestionTestingData
 
 public class QuestionsControllerTests : QuestionTestingData
 {
+    private readonly Mock<IQuestionService> _mockService;
+    private readonly QuestionsController _controller;
+
+    public QuestionsControllerTests()
+    {
+        _mockService = new Mock<IQuestionService>();
+        _controller = new QuestionsController(_mockService.Object);
+    }
+
     [Fact]
-    public async Task GetQuizQuestions_ReturnsOkResult_AllResults()
+    public async Task GetQuizQuestions_ReturnsOkResult_WhenExists()
     {
         // Arrange
-        var mockService = new Mock<IQuestionService>();
-        mockService.Setup(service => service.GetQuestionsAsync()).ReturnsAsync(QuestionsDto);
-        var controller = new QuestionsController(mockService.Object);
+        _mockService.Setup(service => service.GetQuestionsAsync()).ReturnsAsync(QuestionsDto);
 
         // Act
-        var result = await controller.GetQuestions();
+        var result = await _controller.GetQuestions();
 
         // Assert
         Assert.IsType<Ok<IEnumerable<QuestionReadOnlyDto>>>(result);
     }
 
     [Fact]
-    public async Task GetQuizQuestions_ReturnsNoContent_EmptyList()
+    public async Task GetQuizQuestions_ReturnsNoContent_WhenEmpty()
     {
         // Arrange
-        var mockService = new Mock<IQuestionService>();
-        mockService.Setup(service => service.GetQuestionsAsync()).ReturnsAsync(QuestionsDtoEmpty);
-        var controller = new QuestionsController(mockService.Object);
+        _mockService.Setup(service => service.GetQuestionsAsync()).ReturnsAsync(QuestionsDtoEmpty);
 
         // Act
-        var result = await controller.GetQuestions();
+        var result = await _controller.GetQuestions();
 
         // Assert
         Assert.IsType<NoContent>(result);
