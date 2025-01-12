@@ -1,4 +1,4 @@
-﻿using QuizApplication.DataAccess.DTO;
+﻿using QuizApplication.BusinessLogic.DTO;
 
 namespace QuizApplication.BusinessLogic.Services.Contracts;
 

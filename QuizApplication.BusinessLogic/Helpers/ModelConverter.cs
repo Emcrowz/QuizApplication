@@ -1,4 +1,4 @@
-﻿using QuizApplication.DataAccess.DTO;
+﻿using QuizApplication.BusinessLogic.DTO;
 using QuizApplication.DataAccess.Models;
 
 namespace QuizApplication.BusinessLogic.Helpers;

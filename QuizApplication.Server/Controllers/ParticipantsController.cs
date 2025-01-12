@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QuizApplication.BusinessLogic.DTO;
 using QuizApplication.BusinessLogic.Services.Contracts;
-using QuizApplication.DataAccess.DTO;
 
 namespace QuizApplication.Server.Controllers;
 

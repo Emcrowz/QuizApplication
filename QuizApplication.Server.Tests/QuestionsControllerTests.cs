@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Moq;
+using QuizApplication.BusinessLogic.DTO;
 using QuizApplication.BusinessLogic.Services.Contracts;
 using QuizApplication.DataAccess.Constants;
-using QuizApplication.DataAccess.DTO;
 using QuizApplication.Server.Controllers;
 
 namespace QuizApplication.Server.Tests;

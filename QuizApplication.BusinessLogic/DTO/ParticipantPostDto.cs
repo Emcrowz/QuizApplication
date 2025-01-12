@@ -1,4 +1,4 @@
-﻿namespace QuizApplication.DataAccess.DTO;
+﻿namespace QuizApplication.BusinessLogic.DTO;
 
 public record ParticipantPostDto
 {
