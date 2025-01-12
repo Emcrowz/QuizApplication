@@ -1,6 +1,6 @@
-﻿namespace QuizApplication.DataAccess.DTO;
+﻿namespace QuizApplication.BusinessLogic.DTO;
 
-public class ParticipantReadOnlyDto
+public record ParticipantReadOnlyDto
 {
     public string Email { get; init; }
     public string Name { get; init; }

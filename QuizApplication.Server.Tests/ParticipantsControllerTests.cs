@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Moq;
-using QuizApplication.DataAccess.DTO;
-using QuizApplication.DataAccess.Services.Contracts;
+using QuizApplication.BusinessLogic.DTO;
+using QuizApplication.BusinessLogic.Services.Contracts;
 using QuizApplication.Server.Controllers;
 using System.Globalization;
 
@@ -23,12 +23,12 @@ public class ParticipantTestingData
 
 public class ParticipantsControllerTests : ParticipantTestingData
 {
-    private readonly Mock<IParticipantService> _mockService;
+    private readonly Mock<IParticipantsService> _mockService;
     private readonly ParticipantsController _controller;
 
     public ParticipantsControllerTests()
     {
-        _mockService = new Mock<IParticipantService>();
+        _mockService = new Mock<IParticipantsService>();
         _controller = new ParticipantsController(_mockService.Object);
     }
 

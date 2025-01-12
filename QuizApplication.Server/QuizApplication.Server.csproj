@@ -28,10 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\QuizApplication.BusinessLogic\QuizApplication.BusinessLogic.csproj" />
     <ProjectReference Include="..\quizapplication.client\quizapplication.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\QuizApplication.DataAccess\QuizApplication.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,14 +1,14 @@
-﻿using QuizApplication.DataAccess.Context;
-using QuizApplication.DataAccess.DTO;
-using QuizApplication.DataAccess.Helpers;
+﻿using QuizApplication.BusinessLogic.DTO;
+using QuizApplication.BusinessLogic.Helpers;
+using QuizApplication.BusinessLogic.Services.Contracts;
+using QuizApplication.DataAccess.Context;
 using QuizApplication.DataAccess.Models;
 using QuizApplication.DataAccess.Repositories;
 using QuizApplication.DataAccess.Repositories.Contracts;
-using QuizApplication.DataAccess.Services.Contracts;
 
-namespace QuizApplication.DataAccess.Services;
+namespace QuizApplication.BusinessLogic.Services;
 
-public class ParticipantService(QuizDbContext context) : IParticipantService
+public class ParticipantsService(QuizDbContext context) : IParticipantsService
 {
     private readonly IParticipantRepository _repository = new ParticipantRepository(context);
 
