@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QuizApplication.BusinessLogic.Services.Contracts;
 using QuizApplication.DataAccess.DTO;
-using QuizApplication.DataAccess.Services.Contracts;
 
 namespace QuizApplication.Server.Controllers;
 
 
 [Route("[controller]")]
 [ApiController]
-public class ParticipantsController(IParticipantService service) : ControllerBase
+public class ParticipantsController(IParticipantsService service) : ControllerBase
 {
     [HttpGet]
     public async Task<IResult> GetParticipants()

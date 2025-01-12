@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using QuizApplication.DataAccess.Services.Contracts;
+using QuizApplication.BusinessLogic.Services.Contracts;
 
 namespace QuizApplication.Server.Controllers;
 
 [Route("[controller]")]
 [ApiController]
-public class QuestionsController(IQuestionService service) : ControllerBase
+public class QuestionsController(IQuestionsService service) : ControllerBase
 {
     [HttpGet]
     public async Task<IResult> GetQuestions()

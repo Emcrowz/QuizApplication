@@ -1,8 +1,8 @@
 ﻿using QuizApplication.DataAccess.DTO;
 
-namespace QuizApplication.DataAccess.Services.Contracts;
+namespace QuizApplication.BusinessLogic.Services.Contracts;
 
-public interface IQuestionService
+public interface IQuestionsService
 {
     Task<IEnumerable<QuestionReadOnlyDto>> GetQuestionsAsync();
 }
