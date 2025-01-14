@@ -1,35 +1,52 @@
 import { useEffect, useState } from "react";
-import { ParticipantModel } from "../types/ParticipantModel";
+import { Participant } from "../Models/Participant";
 import { useNavigate } from "react-router-dom";
+import { API_ROUTE } from "../Constants/RoutesAndPaths";
 
-export const Leaderboard = () => {
-    const navigate = useNavigate();
-    let index = 1;
+export const Leaderboard: React.FC = () => {
+  const navigate = useNavigate();
+  let index = 1;
 
-    const [participants, setParticipants] = useState<ParticipantModel[]>([])
+  const [participants, setParticipants] = useState<Participant[]>([]);
 
-    useEffect(function () {
-        fetch("https://localhost:7219/participants")
-            .then((res) => res.json())
-            .then((data) => setParticipants(data))
-            .catch((error) => console.log(error))
-    }, [])
+  useEffect(function () {
+    fetch(API_ROUTE.PARTICIPANTS)
+      .then((res) => res.json())
+      .then((data) => setParticipants(data))
+      .catch((error) => console.log(error));
+  }, []);
 
-    const handleNavigateToStart = () => {
-        navigate('/');
-    }
+  const handleNavigateToStart = () => {
+    navigate("/");
+  };
 
-    return (
-        <div>
-            <h1>Hello world! I am Leaderboard page!</h1>
+  return (
+    <div>
+      <h1>Hello world! I am Leaderboard page!</h1>
 
-            <ul>
-                {participants.map(participant => (
-                    <li className={index === 1 ? "bg-amber-400" : index === 2 ? "bg-zinc-400" : index === 3 ? "bg-amber-800" : "bg-blue-200"} key={index}>{index++} : {participant.email} | Score: {participant.score}</li>
-                ))}
-            </ul>
+      <ul>
+        {participants.map((participant) => (
+          <li
+            className={
+              index === 1
+                ? "bg-amber-400"
+                : index === 2
+                ? "bg-zinc-400"
+                : index === 3
+                ? "bg-amber-800"
+                : "bg-blue-200"
+            }
+            key={index}
+          >
+            {index++} : {participant.email} | Score: {participant.score} |
+            Participated: {participant.participationDate.toString()}
+          </li>
+        ))}
+      </ul>
 
-            <button type="button" onClick={handleNavigateToStart}>Back to start</button>
-        </div>
-    );
-}
+      <button type="button" onClick={handleNavigateToStart}>
+        Back to start
+      </button>
+    </div>
+  );
+};

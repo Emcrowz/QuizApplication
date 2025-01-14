@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "tailwind": "npx tailwindcss -i ./tailwind.css -o ./src/styles/tailwind.css --watch"
+    "tailwind": "npx tailwindcss -i ./tailwind.css -o ./src/Styles/tailwind.css --watch"
   },
   "dependencies": {
     "react": "^19.0.0",

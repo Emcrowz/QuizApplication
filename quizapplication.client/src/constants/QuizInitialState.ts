@@ -1,10 +1,18 @@
-import { QuizStatus } from "./QuizStateStatus";
+import { Participant } from "../Models/Participant";
+import { QuizStatus } from "./QuizStatus";
+
+const defaultParticipant: Participant = {
+  name: "",
+  email: "",
+  score: 0,
+  participationDate: new Date(),
+};
 
 export const quizInitialState = {
-    participant: null,
-    questions: [],
-    status: QuizStatus.Loading,
-    index: 0,
-    answers: [],
-    points: 0
+  status: QuizStatus.Loading,
+  participant: defaultParticipant,
+  questions: [],
+  answers: [],
+  index: 0,
+  points: 0,
 };
