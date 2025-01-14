@@ -21,8 +21,8 @@ export const Leaderboard: React.FC = () => {
   };
 
   return (
-      <div className="mx-auto h-screen items-center">
-          <h1 className="justify-center text-8xl">Leaderboard</h1>
+    <div className="mx-auto h-screen items-center">
+      <h1 className="justify-center text-8xl">Leaderboard</h1>
 
       <ul>
         {participants.map((participant) => (
@@ -44,7 +44,11 @@ export const Leaderboard: React.FC = () => {
         ))}
       </ul>
 
-          <button className="bg-green-500/65 rounded-xl p-4 hover:bg-green-400/85" type="button" onClick={handleNavigateToStart}>
+      <button
+        className="bg-green-500/65 rounded-xl p-4 hover:bg-green-400/85"
+        type="button"
+        onClick={handleNavigateToStart}
+      >
         Back to start
       </button>
     </div>

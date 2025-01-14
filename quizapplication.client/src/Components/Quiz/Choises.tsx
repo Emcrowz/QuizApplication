@@ -46,7 +46,7 @@ export const Choises: React.FC<ChoisesProps> = ({
 
   return (
     <form>
-          {question.type === QuestionType.Single ? (
+      {question.type === QuestionType.Single ? (
         <div className="mb-4">
           {question.choises.map((choise) => (
             <div key={choise}>

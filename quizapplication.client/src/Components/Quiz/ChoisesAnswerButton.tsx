@@ -34,7 +34,7 @@ export const ChoisesAnswerButton: React.FC<ChoisesAnswerButtonProps> = ({
   if (index === numberOfQuestions - 1) {
     return (
       <button
-            className="bg-cyan-500/40 rounded-lg p-4 over:bg-green-400/85"
+        className="bg-cyan-500/40 rounded-lg p-4 over:bg-green-400/85"
         type="button"
         onClick={() =>
           dispatch({

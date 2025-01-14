@@ -17,8 +17,8 @@ export const QuestionComponent: React.FC<QuestionProps> = ({
   numberOfQuestions,
 }) => {
   return (
-      <div className="">
-          <h1 className="mb-4 text-6xl">{question.title}</h1>
+    <div className="">
+      <h1 className="mb-4 text-6xl">{question.title}</h1>
       <Choises
         question={question}
         dispatch={dispatch}
