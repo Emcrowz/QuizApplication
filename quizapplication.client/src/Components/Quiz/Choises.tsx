@@ -46,8 +46,8 @@ export const Choises: React.FC<ChoisesProps> = ({
 
   return (
     <form>
-      {question.type === QuestionType.Single ? (
-        <div>
+          {question.type === QuestionType.Single ? (
+        <div className="mb-4">
           {question.choises.map((choise) => (
             <div key={choise}>
               <input
@@ -62,7 +62,7 @@ export const Choises: React.FC<ChoisesProps> = ({
           ))}
         </div>
       ) : question.type === QuestionType.Multiple ? (
-        <div>
+        <div className="mb-4">
           {question.choises.map((choise) => (
             <div key={choise}>
               <input
@@ -77,7 +77,7 @@ export const Choises: React.FC<ChoisesProps> = ({
           ))}
         </div>
       ) : question.type === QuestionType.Typed ? (
-        <div>
+        <div className="mb-4">
           <input
             type="text"
             value={selectedAnswers[0] || ""}

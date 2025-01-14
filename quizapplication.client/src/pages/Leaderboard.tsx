@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Participant } from "../Models/Participant";
 import { useNavigate } from "react-router-dom";
 import { API_ROUTE } from "../Constants/RoutesAndPaths";
@@ -10,7 +10,7 @@ export const Leaderboard: React.FC = () => {
   const [participants, setParticipants] = useState<Participant[]>([]);
 
   useEffect(function () {
-    fetch(API_ROUTE.PARTICIPANTS)
+    fetch(API_ROUTE.TOPTEN)
       .then((res) => res.json())
       .then((data) => setParticipants(data))
       .catch((error) => console.log(error));
@@ -21,8 +21,8 @@ export const Leaderboard: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Hello world! I am Leaderboard page!</h1>
+      <div className="mx-auto h-screen items-center">
+          <h1 className="justify-center text-8xl">Leaderboard</h1>
 
       <ul>
         {participants.map((participant) => (
@@ -44,7 +44,7 @@ export const Leaderboard: React.FC = () => {
         ))}
       </ul>
 
-      <button type="button" onClick={handleNavigateToStart}>
+          <button className="bg-green-500/65 rounded-xl p-4 hover:bg-green-400/85" type="button" onClick={handleNavigateToStart}>
         Back to start
       </button>
     </div>

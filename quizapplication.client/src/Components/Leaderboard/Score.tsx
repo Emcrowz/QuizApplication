@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+﻿import { useNavigate } from "react-router-dom";
 import { Participant } from "../../Models/Participant";
 
 export const Score: React.FC<Participant> = ({
@@ -45,26 +45,29 @@ export const Score: React.FC<Participant> = ({
     navigate("/");
   };
 
-  return (
-    <div>
-      <h1>Your final score: </h1>
-      <p>{score}</p>
-      <p>Do you want to submit your result to leaderboard?</p>
-      <form onSubmit={handleSubmitResults}>
-        <button type="submit">Submit result to leaderboard</button>
-      </form>
-      <button type="button" onClick={handleNavigateToLeaderboard}>
-        Check leaderboard without submitting
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          window.location.reload();
-          handleNavigateToStart();
-        }}
-      >
-        Start again
-      </button>
+    return (
+        <div className="mx-auto h-screen flex-col items-center">
+            <h1 className="text-6xl">Your final score: </h1>
+            <p className="text-4xl font-bold">{score}</p>
+            <p className=" text-4xl italic">Do you want to submit your result to leaderboard?</p>
+            <form onSubmit={handleSubmitResults}>
+                <button className="bg-green-500/65 rounded-xl p-4 hover:bg-green-400/85" type="submit">Submit result to leaderboard</button>
+            </form>
+            <div className="flex">
+                <button type="button" className="bg-amber-500/65 rounded-xl p-4 hover:bg-amber-400/85" onClick={handleNavigateToLeaderboard}>
+                    Check leaderboard without submitting
+                </button>
+                <button
+                    type="button"
+                    className="bg-green-500/65 rounded-xl p-4 hover:bg-green-400/85"
+                    onClick={() => {
+                        window.location.reload();
+                        handleNavigateToStart();
+                    }}
+                >
+                    Start again
+                </button>
+            </div>
     </div>
   );
 };

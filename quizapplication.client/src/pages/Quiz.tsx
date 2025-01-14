@@ -1,5 +1,4 @@
 ﻿import { useEffect, useReducer } from "react";
-import { useNavigate } from "react-router-dom";
 import { Loading } from "../Components/Common/Loading";
 import { ErrorPage } from "./ErrorPage";
 import { quizInitialState } from "../Constants/QuizInitialState";
@@ -14,7 +13,6 @@ import { StartContainer } from "../Components/Start/StartContainer";
 import { API_ROUTE } from "../Constants/RoutesAndPaths";
 
 export const Quiz: React.FC = () => {
-  const navigate = useNavigate();
   const [{ participant, questions, status, index, points }, dispatch] =
     useReducer(quizStateManager, quizInitialState);
 
@@ -31,12 +29,8 @@ export const Quiz: React.FC = () => {
       );
   }, []);
 
-  const handleNavigateToLeaderboard = () => {
-    navigate("/leaderboard");
-  };
-
   return (
-    <div className="my-4 flex justify-center">
+    <div className="h-screen items-center justify-center">
       {status === QuizStatus.Loading && <Loading />}
       {status === QuizStatus.Failed && <ErrorPage />}
       {status === QuizStatus.Ready && (
@@ -45,9 +39,6 @@ export const Quiz: React.FC = () => {
             numberOfQuestions={numberOfQuestions}
             dispatch={dispatch}
           />
-          <button type="button" onClick={handleNavigateToLeaderboard}>
-            Check the Leaderboard
-          </button>
         </StartContainer>
       )}
       {status === QuizStatus.Start && (

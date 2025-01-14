@@ -1,7 +1,7 @@
 export const NotFound: React.FC = () => {
-  return (
-    <div>
-      <h1>Page not found - error 404.</h1>
-    </div>
+    return (
+      <div className="flex h-screen items-center">
+        <h1 className="align-middle text-8xl">Page not found.</h1>
+      </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { Question } from "../../Models/Question";
 import { Choises } from "./Choises";
 import { QuizAction } from "../../Interfaces/QuizAction";
@@ -17,8 +17,8 @@ export const QuestionComponent: React.FC<QuestionProps> = ({
   numberOfQuestions,
 }) => {
   return (
-    <div className="">
-      <h1>{question.title}</h1>
+      <div className="">
+          <h1 className="mb-4 text-6xl">{question.title}</h1>
       <Choises
         question={question}
         dispatch={dispatch}
