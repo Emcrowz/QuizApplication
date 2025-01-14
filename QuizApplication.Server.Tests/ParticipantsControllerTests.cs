@@ -39,7 +39,7 @@ public class ParticipantsControllerTests : ParticipantTestingData
         _mockService.Setup(service => service.GetParticipantsAsync()).ReturnsAsync(ParticipantsDto);
 
         // Act
-        var result = await _controller.GetParticipants();
+        var result = await _controller.GetAll();
 
         // Assert
         Assert.IsType<Ok<IEnumerable<ParticipantReadOnlyDto>>>(result);
@@ -52,17 +52,30 @@ public class ParticipantsControllerTests : ParticipantTestingData
         _mockService.Setup(service => service.GetParticipantsAsync()).ReturnsAsync(ParticipantsDtoEmpty);
 
         // Act
-        var result = await _controller.GetParticipants();
+        var result = await _controller.GetAll();
 
         // Assert
         Assert.IsType<NoContent>(result);
     }
 
     [Fact]
+    public async Task GetTop10Participants_ReturnsOkResult_WhenExists()
+    {
+        // Arrange
+        _mockService.Setup(service => service.GetTop10ParticipantsForLeaderboardAsync()).ReturnsAsync(ParticipantsDto);
+
+        // Act
+        var result = await _controller.GetTop();
+
+        // Assert
+        Assert.IsType<Ok<IEnumerable<ParticipantReadOnlyDto>>>(result);
+    }
+
+    [Fact]
     public async Task PostParticipant_ReturnsOkResult()
     {
         // Arrange && Act
-        var result = await _controller.PostParticipant(ParticipantPostDto);
+        var result = await _controller.PostSingle(ParticipantPostDto);
 
         // Assert
         Assert.IsType<Ok>(result);

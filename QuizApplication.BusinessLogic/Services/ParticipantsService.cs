@@ -25,6 +25,19 @@ public class ParticipantsService(QuizDbContext context) : IParticipantsService
         return dtos;
     }
 
+    public async Task<IEnumerable<ParticipantReadOnlyDto>> GetTop10ParticipantsForLeaderboardAsync()
+    {
+        var data = await _repository.GetAllAsync();
+
+        List<ParticipantReadOnlyDto> dtos = [];
+        foreach (Participant participant in data)
+        {
+            dtos.Add(ModelConverter.ConvertParticipantToReadOnlyDTO<ParticipantReadOnlyDto>(participant));
+        }
+
+        return dtos.OrderByDescending(o => o.Score).Take(10);
+    }
+
     public async Task PostParticipantAsync(ParticipantPostDto entity)
     {
         var data = ModelConverter.ConvertParticipantPostDtoToModel<Participant>(entity);

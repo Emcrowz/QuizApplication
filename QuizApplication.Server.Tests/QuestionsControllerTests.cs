@@ -37,7 +37,7 @@ public class QuestionsControllerTests : QuestionTestingData
         _mockService.Setup(service => service.GetQuestionsAsync()).ReturnsAsync(QuestionsDto);
 
         // Act
-        var result = await _controller.GetQuestions();
+        var result = await _controller.GetAll();
 
         // Assert
         Assert.IsType<Ok<IEnumerable<QuestionReadOnlyDto>>>(result);
@@ -50,7 +50,7 @@ public class QuestionsControllerTests : QuestionTestingData
         _mockService.Setup(service => service.GetQuestionsAsync()).ReturnsAsync(QuestionsDtoEmpty);
 
         // Act
-        var result = await _controller.GetQuestions();
+        var result = await _controller.GetAll();
 
         // Assert
         Assert.IsType<NoContent>(result);
