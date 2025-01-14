@@ -10,10 +10,10 @@ namespace QuizApplication.Server.Tests;
 public class QuestionTestingData
 {
     protected readonly IEnumerable<QuestionReadOnlyDto> QuestionsDto = [
-        new() { Type = QuestionType.Single, Title = "Test Question", Choises = ["A", "B", "C", "D"], CorrectOptions = ["A"], Points = 1 },
-        new() { Type = QuestionType.Multiple, Title = "Test Question", Choises = ["A", "B", "C", "D"], CorrectOptions = ["A", "C"], Points = 1 },
-        new() { Type = QuestionType.Single, Title = "Test Question", Choises = ["A", "B", "C", "D"], CorrectOptions = ["D"], Points = 1 },
-        new() { Type = QuestionType.Typed, Title = "Test Question", Choises = [], CorrectOptions = ["Typed answer"], Points = 1 },
+        new() { Id = 1, Type = QuestionType.Single, Title = "Test Question", Choises = ["A", "B", "C", "D"], CorrectOptions = ["A"], Points = 1 },
+        new() { Id = 2, Type = QuestionType.Multiple, Title = "Test Question", Choises = ["A", "B", "C", "D"], CorrectOptions = ["A", "C"], Points = 1 },
+        new() { Id = 3, Type = QuestionType.Single, Title = "Test Question", Choises = ["A", "B", "C", "D"], CorrectOptions = ["D"], Points = 1 },
+        new() { Id = 4, Type = QuestionType.Typed, Title = "Test Question", Choises = [], CorrectOptions = ["Typed answer"], Points = 1 },
     ];
 
     protected readonly IEnumerable<QuestionReadOnlyDto> QuestionsDtoEmpty = [];
