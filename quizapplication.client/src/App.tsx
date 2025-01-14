@@ -1,48 +1,16 @@
-﻿import { useEffect, useState } from 'react';
-import './App.css';
+﻿import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Quiz } from './pages/Quiz';
+import { Leaderboard } from './pages/Leaderboard';
+import { NotFound } from './pages/NotFound';
 
-interface Question {
-    id: number;
-    title: string;
-    choises: string[];
-    solution: string;
-    points: number;
-}
-
-function App() {
-    const [questions, setQuestions] = useState<Question[]>();
-
-    useEffect(() => {
-        fetch('https://localhost:7219/questions')
-            .then((res) => res.json())
-            .then((data) => setQuestions(data))
-            .catch((err) => console.log(err)) // For debugging purposes.
-    }, []);
-
-    const contents = questions === undefined
-        ? <p><em>Loading...</em></p>
-        : <table className="table-striped table" aria-labelledby="tableLabel">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                </tr>
-            </thead>
-            <tbody>
-                {questions.map(question =>
-                    <tr key={question.id}>
-                        <td>{question.title}</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>;
-
+export const App = () => {
     return (
-        <div>
-            <h1 id="tableLabel">Quiz</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Quiz />} />
+                <Route path="/leaderboard" element={<Leaderboard />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
-
-export default App;
