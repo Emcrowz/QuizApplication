@@ -9,14 +9,15 @@ namespace QuizApplication.Server.Tests;
 
 public class QuestionTestingData
 {
-    protected readonly IEnumerable<QuestionReadOnlyDto> QuestionsDto = [
-        new() { Id = 1, Type = QuestionType.Single, Title = "Test Question", Choises = ["A", "B", "C", "D"], CorrectOptions = ["A"], Points = 1 },
-        new() { Id = 2, Type = QuestionType.Multiple, Title = "Test Question", Choises = ["A", "B", "C", "D"], CorrectOptions = ["A", "C"], Points = 1 },
-        new() { Id = 3, Type = QuestionType.Single, Title = "Test Question", Choises = ["A", "B", "C", "D"], CorrectOptions = ["D"], Points = 1 },
-        new() { Id = 4, Type = QuestionType.Typed, Title = "Test Question", Choises = [], CorrectOptions = ["Typed answer"], Points = 1 },
-    ];
+    protected readonly IEnumerable<QuestionReadOnlyDto> QuestionsDto = new List<QuestionReadOnlyDto>
+    {
+        new() { Id = 1, Type = QuestionType.Single, Title = "Test Question", Choises = new List<string> { "A", "B", "C", "D" }, CorrectOptions = new List<string> { "A" }, Points = 1 },
+        new() { Id = 2, Type = QuestionType.Multiple, Title = "Test Question", Choises = new List<string> { "A", "B", "C", "D" }, CorrectOptions = new List<string> { "A", "C" }, Points = 1 },
+        new() { Id = 3, Type = QuestionType.Single, Title = "Test Question", Choises = new List<string> { "A", "B", "C", "D" }, CorrectOptions = new List<string> { "D" }, Points = 1 },
+        new() { Id = 4, Type = QuestionType.Typed, Title = "Test Question", Choises = new List<string>(), CorrectOptions = new List<string> { "Typed answer" }, Points = 1 },
+    };
 
-    protected readonly IEnumerable<QuestionReadOnlyDto> QuestionsDtoEmpty = [];
+    protected readonly IEnumerable<QuestionReadOnlyDto> QuestionsDtoEmpty = new List<QuestionReadOnlyDto>();
 }
 
 public class QuestionsControllerTests : QuestionTestingData
@@ -54,5 +55,18 @@ public class QuestionsControllerTests : QuestionTestingData
 
         // Assert
         Assert.IsType<NoContent>(result);
+    }
+
+    [Fact]
+    public async Task GetQuizQuestions_ReturnsProblem_OnException()
+    {
+        // Arrange
+        _mockService.Setup(service => service.GetQuestionsAsync()).ThrowsAsync(new Exception("Test exception"));
+
+        // Act
+        var result = await _controller.GetAll();
+
+        // Assert
+        Assert.IsType<ProblemHttpResult>(result);
     }
 }

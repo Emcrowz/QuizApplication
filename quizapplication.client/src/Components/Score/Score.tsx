@@ -1,6 +1,28 @@
 ﻿import { useNavigate } from "react-router-dom";
 import { Participant } from "../../Models/Participant";
 import { API_ROUTE } from "../../Constants/RoutesAndPaths";
+import React, { useState, useEffect } from "react";
+import { Loading } from "../Common/Loading";
+
+const participantApiPostReq = async (participant: Participant): Promise<number> => {
+    let score = 0;
+
+    try {
+        const res = await fetch(API_ROUTE.PARTICIPANT_POST, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(participant),
+        });
+        const data = await res.json();
+        score = data;
+    } catch (error) {
+        console.error("Error submitting participant:", error);
+    }
+
+    return score;
+}
 
 export const Score: React.FC<Participant> = ({
   email,
@@ -9,36 +31,16 @@ export const Score: React.FC<Participant> = ({
   finalAnswers,
 }) => {
   const navigate = useNavigate();
+    const [score, setScore] = useState<number>(0);
 
-  const handleSubmitResults = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    useEffect(() => {
+        const fetchScore = async () => {
+            const result = await participantApiPostReq({ name, email, participationDate, finalAnswers });
+            setScore(result);
+        };
 
-    const newParticipant: Participant = {
-      name: name,
-      email: email,
-      participationDate: participationDate,
-      finalAnswers: finalAnswers,
-    };
-
-    console.log(newParticipant);
-
-    fetch(API_ROUTE.PARTICIPANTS, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newParticipant),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Participant submitted successfully:", data);
-      })
-      .catch((error) => {
-        console.error("Error submitting participant:", error);
-      });
-
-    navigate("/leaderboard");
-  };
+        fetchScore();
+    }, [score]);
 
   const handleNavigateToLeaderboard = () => {
     navigate("/leaderboard");
@@ -50,26 +52,15 @@ export const Score: React.FC<Participant> = ({
 
   return (
     <div className="mx-auto h-screen flex-col items-center">
-      <h1 className="text-6xl">Your final score: </h1>
-      <p className="text-4xl font-bold">score</p>
-      <p className=" text-4xl italic">
-        Do you want to submit your result to leaderboard?
-      </p>
-      <form onSubmit={handleSubmitResults}>
-        <button
-          className="bg-green-500/65 rounded-xl p-4 hover:bg-green-400/85"
-          type="submit"
-        >
-          Submit result to leaderboard
-        </button>
-      </form>
+          <h1 className="text-6xl">Your final score: </h1>
+          <p className="text-4xl font-bold">{score === 0 ? (<Loading />) : score}</p>
       <div className="flex">
         <button
           type="button"
           className="bg-amber-500/65 rounded-xl p-4 hover:bg-amber-400/85"
           onClick={handleNavigateToLeaderboard}
         >
-          Check leaderboard without submitting
+          Check the Leaderboard
         </button>
         <button
           type="button"

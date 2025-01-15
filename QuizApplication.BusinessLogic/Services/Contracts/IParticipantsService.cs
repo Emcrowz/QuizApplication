@@ -6,5 +6,5 @@ public interface IParticipantsService
 {
     Task<IEnumerable<ParticipantReadOnlyDto>> GetParticipantsAsync();
     Task<IEnumerable<ParticipantReadOnlyDto>> GetTop10ParticipantsForLeaderboardAsync();
-    Task PostParticipantAsync(ParticipantPostDto entity);
+    Task<int> PostParticipantAsync(ParticipantPostDto entity);
 }

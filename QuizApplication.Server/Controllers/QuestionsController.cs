@@ -10,12 +10,19 @@ public class QuestionsController(IQuestionsService service) : ControllerBase
     [HttpGet]
     public async Task<IResult> GetAll()
     {
-        var res = await service.GetQuestionsAsync();
-        if (!res.Any())
+        try
         {
-            return TypedResults.NoContent();
-        }
+            var res = await service.GetQuestionsAsync();
+            if (!res.Any())
+            {
+                return TypedResults.NoContent();
+            }
 
-        return TypedResults.Ok(res);
+            return TypedResults.Ok(res);
+        }
+        catch (Exception ex)
+        {
+            return TypedResults.Problem(detail: ex.Message);
+        }
     }
 }
