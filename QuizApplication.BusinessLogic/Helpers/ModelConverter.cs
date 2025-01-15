@@ -1,7 +1,7 @@
-﻿using QuizApplication.DataAccess.Models;
-using QuizApplication.Server.DTO;
+﻿using QuizApplication.BusinessLogic.DTO;
+using QuizApplication.DataAccess.Models;
 
-namespace QuizApplication.Server.Helpers;
+namespace QuizApplication.BusinessLogic.Helpers;
 
 public static class ModelConverter
 {
@@ -9,6 +9,7 @@ public static class ModelConverter
     {
         return new T()
         {
+            Type = entity.Type,
             Title = entity.Title,
             Choises = entity.Choises,
             CorrectOptions = entity.CorrectOptions,

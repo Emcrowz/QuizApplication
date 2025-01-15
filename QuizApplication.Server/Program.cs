@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using QuizApplication.BusinessLogic.Services;
+using QuizApplication.BusinessLogic.Services.Contracts;
 using QuizApplication.DataAccess.Context;
-using QuizApplication.DataAccess.Services;
-using QuizApplication.DataAccess.Services.Contracts;
 using QuizApplication.Server.Constants;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,8 +14,8 @@ builder.Services.AddDbContext<QuizDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString(ConstantValues.DefaultConnection)));
 
 // DI Containers
-builder.Services.AddScoped<IQuestionService, QuestionService>();
-builder.Services.AddScoped<IParticipantService, ParticipantService>();
+builder.Services.AddScoped<IQuestionsService, QuestionsService>();
+builder.Services.AddScoped<IParticipantsService, ParticipantsService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

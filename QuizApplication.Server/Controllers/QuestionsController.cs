@@ -1,30 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using QuizApplication.DataAccess.Models;
-using QuizApplication.DataAccess.Services.Contracts;
-using QuizApplication.Server.DTO;
-using QuizApplication.Server.Helpers;
+using QuizApplication.BusinessLogic.Services.Contracts;
 
 namespace QuizApplication.Server.Controllers;
 
-[Route("[controller]")]
+[Route("[controller]/[action]")]
 [ApiController]
-public class QuestionsController(IQuestionService service) : ControllerBase
+public class QuestionsController(IQuestionsService service) : ControllerBase
 {
     [HttpGet]
-    public async Task<IResult> GetQuestions()
+    public async Task<IResult> GetAll()
     {
-        var res = await service.GetQuestionsAsync();
-        if (!res.Any())
+        try
         {
-            return TypedResults.NoContent();
-        }
+            var res = await service.GetQuestionsAsync();
+            if (!res.Any())
+            {
+                return TypedResults.NoContent();
+            }
 
-        List<QuestionReadOnlyDto> data = [];
-        foreach (Question question in res)
+            return TypedResults.Ok(res);
+        }
+        catch (Exception ex)
         {
-            data.Add(ModelConverter.ConvertQuestionToReadOnlyDTO<QuestionReadOnlyDto>(question));
+            return TypedResults.Problem(detail: ex.Message);
         }
-
-        return TypedResults.Ok(data);
     }
 }

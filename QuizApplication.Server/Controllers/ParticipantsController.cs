@@ -1,40 +1,69 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using QuizApplication.DataAccess.Models;
-using QuizApplication.DataAccess.Services.Contracts;
-using QuizApplication.Server.DTO;
-using QuizApplication.Server.Helpers;
+using QuizApplication.BusinessLogic.DTO;
+using QuizApplication.BusinessLogic.Services.Contracts;
 
 namespace QuizApplication.Server.Controllers;
 
 
-[Route("[controller]")]
+[Route("[controller]/[action]")]
 [ApiController]
-public class ParticipantsController(IParticipantService service) : ControllerBase
+public class ParticipantsController(IParticipantsService service) : ControllerBase
 {
     [HttpGet]
-    public async Task<IResult> GetParticipants()
+    public async Task<IResult> GetAll()
     {
-        var res = await service.GetParticipantsAsync();
-        if (!res.Any())
+        try
         {
-            return TypedResults.NoContent();
-        }
+            var res = await service.GetParticipantsAsync();
+            if (!res.Any())
+            {
+                return TypedResults.NoContent();
+            }
 
-        List<ParticipantReadOnlyDto> data = [];
-        foreach (Participant participant in res)
+            return TypedResults.Ok(res);
+        }
+        catch (Exception ex)
         {
-            data.Add(ModelConverter.ConvertParticipantToReadOnlyDTO<ParticipantReadOnlyDto>(participant));
+            return TypedResults.Problem(detail: ex.Message);
         }
-
-        return TypedResults.Ok(data);
     }
 
     [HttpPost]
-    public async Task<IResult> PostParticipant(ParticipantPostDto participant)
+    public async Task<IResult> PostSingle(ParticipantPostDto participant)
     {
+        try
+        {
+            if (participant == null || string.IsNullOrWhiteSpace(participant.Name) || string.IsNullOrWhiteSpace(participant.Email))
+            {
+                return TypedResults.BadRequest();
+            }
 
-        await service.PostParticipantAsync(ModelConverter.ConvertParticipantPostDtoToModel<Participant>(participant));
+            var res = await service.PostParticipantAsync(participant);
 
-        return TypedResults.Ok();
+            return TypedResults.Ok(res);
+        }
+        catch (Exception ex)
+        {
+            return TypedResults.Problem(detail: ex.Message);
+        }
+    }
+
+    [HttpGet]
+    public async Task<IResult> GetTop()
+    {
+        try
+        {
+            var res = await service.GetTop10ParticipantsForLeaderboardAsync();
+            if (!res.Any())
+            {
+                return TypedResults.NoContent();
+            }
+
+            return TypedResults.Ok(res);
+        }
+        catch (Exception ex)
+        {
+            return TypedResults.Problem(detail: ex.Message);
+        }
     }
 }
