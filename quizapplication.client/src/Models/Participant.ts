@@ -3,4 +3,5 @@ export interface Participant {
   name: string;
   participationDate: Date;
   finalAnswers: string[];
+  score: number;
 }

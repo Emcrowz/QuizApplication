@@ -43,7 +43,7 @@ public class ParticipantsService(QuizDbContext context) : IParticipantsService
     public async Task<int> PostParticipantAsync(ParticipantPostDto entity)
     {
         var data = ModelConverter.ConvertParticipantPostDtoToModel<Participant>(entity);
-        data.Score = await CalculateParticipantScore(entity.FinalAnswers);
+        data.Score = await CalculateParticipantScore(entity.FinalAnswers!);
 
         var res = await _participantRepository.AddAsync(data);
         return res.Score;

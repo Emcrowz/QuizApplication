@@ -6,6 +6,7 @@ const defaultParticipant: Participant = {
   email: "",
   participationDate: new Date(),
   finalAnswers: [],
+  score: 0,
 };
 
 export const quizInitialState = {

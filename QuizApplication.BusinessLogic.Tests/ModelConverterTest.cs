@@ -27,8 +27,6 @@ public class ModelConverterTest
         Assert.Equal(question.Type, result.Type);
         Assert.Equal(question.Title, result.Title);
         Assert.Equal(question.Choises, result.Choises);
-        Assert.Equal(question.CorrectOptions, result.CorrectOptions);
-        Assert.Equal(question.Points, result.Points);
     }
 
     [Fact]

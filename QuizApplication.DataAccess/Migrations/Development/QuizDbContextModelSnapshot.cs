@@ -40,104 +40,6 @@ namespace QuizApplication.DataAccess.Migrations.Development
                     b.HasKey("Id");
 
                     b.ToTable("Participants");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Email = "Jane.Doe@mail.com",
-                            Name = "Jane Doe",
-                            ParticipationDate = new DateTime(2023, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 2
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Email = "John.Doe@mail.com",
-                            Name = "John Doe",
-                            ParticipationDate = new DateTime(2024, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 10
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Email = "Jane.Doe@mail.com",
-                            Name = "Jane Doe",
-                            ParticipationDate = new DateTime(2021, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 8
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Email = "John.Doe@mail.com",
-                            Name = "John Doe",
-                            ParticipationDate = new DateTime(2022, 2, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 7
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Email = "Jane.Doe@mail.com",
-                            Name = "Jane Doe",
-                            ParticipationDate = new DateTime(2022, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 4
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Email = "Jane.Doe@mail.com",
-                            Name = "Jane Doe",
-                            ParticipationDate = new DateTime(2022, 9, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 0
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Email = "Jane.Doe@mail.com",
-                            Name = "Jane Doe",
-                            ParticipationDate = new DateTime(2022, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Email = "Jane.Doe@mail.com",
-                            Name = "Jane Doe",
-                            ParticipationDate = new DateTime(2021, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Email = "Jane.Doe@mail.com",
-                            Name = "Jane Doe",
-                            ParticipationDate = new DateTime(2021, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 0
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Email = "Jane.Doe@mail.com",
-                            Name = "Jane Doe",
-                            ParticipationDate = new DateTime(2021, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 8
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Email = "Jane.Doe@mail.com",
-                            Name = "Jane Doe",
-                            ParticipationDate = new DateTime(2024, 5, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 3
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Email = "Jane.Doe@mail.com",
-                            Name = "Jane Doe",
-                            ParticipationDate = new DateTime(2023, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 0
-                        });
                 });
 
             modelBuilder.Entity("QuizApplication.DataAccess.Models.Question", b =>
@@ -170,91 +72,91 @@ namespace QuizApplication.DataAccess.Migrations.Development
                         new
                         {
                             Id = 1,
-                            Choises = "[\"Option 1\",\"Option 2\",\"Option 3\",\"Option 4\"]",
-                            CorrectOptions = "[\"Option 2\"]",
-                            Points = 1,
-                            Title = "Question 1",
+                            Choises = "[\"Dark chocolate\",\"Canned tuna\",\"Honey\",\"Peanut butter\"]",
+                            CorrectOptions = "[\"Honey\"]",
+                            Points = 100,
+                            Title = "What is the only food that cannot go bad?",
                             Type = (byte)1
                         },
                         new
                         {
                             Id = 2,
-                            Choises = "[\"Option 1\",\"Option 2\",\"Option 3\",\"Option 4\"]",
-                            CorrectOptions = "[\"Option 1\",\"Option 3\"]",
-                            Points = 1,
-                            Title = "Question 2",
+                            Choises = "[\"Python\",\"HTML\",\"SQL\",\"Java\"]",
+                            CorrectOptions = "[\"Python\",\"SQL\",\"Java\"]",
+                            Points = 100,
+                            Title = "Which of the following are programming languages?",
                             Type = (byte)2
                         },
                         new
                         {
                             Id = 3,
-                            Choises = "[\"Option 1\",\"Option 2\",\"Option 3\",\"Option 4\"]",
-                            CorrectOptions = "[\"Option 4\"]",
-                            Points = 1,
-                            Title = "Question 3",
+                            Choises = "[\"Eiffel Tower\",\"Forbidden City\",\"Colosseum\",\"Statue of Liberty\"]",
+                            CorrectOptions = "[\"Forbidden City\"]",
+                            Points = 100,
+                            Title = "Which of these is the most visited attraction in the world?",
                             Type = (byte)1
                         },
                         new
                         {
                             Id = 4,
                             Choises = "[]",
-                            CorrectOptions = "[\"Written Answer\"]",
-                            Points = 1,
-                            Title = "Question 4",
+                            CorrectOptions = "[\"Neutron\"]",
+                            Points = 100,
+                            Title = "What part of the atom has no electric charge?",
                             Type = (byte)0
                         },
                         new
                         {
                             Id = 5,
-                            Choises = "[\"Option 1\",\"Option 2\",\"Option 3\",\"Option 4\"]",
-                            CorrectOptions = "[\"Option 1\",\"Option 2\",\"Option 4\"]",
-                            Points = 1,
-                            Title = "Question 5",
+                            Choises = "[\"Sr\",\"Am\",\"Xe\",\"D\"]",
+                            CorrectOptions = "[\"Sr\",\"Am\",\"Xe\"]",
+                            Points = 100,
+                            Title = "Which elements belong to the periodic table of the elements?",
                             Type = (byte)2
                         },
                         new
                         {
                             Id = 6,
                             Choises = "[]",
-                            CorrectOptions = "[\"Another Custom\"]",
-                            Points = 1,
-                            Title = "Question 6",
+                            CorrectOptions = "[\"Venus\"]",
+                            Points = 100,
+                            Title = "Which planet is the hottest in the solar system?",
                             Type = (byte)0
                         },
                         new
                         {
                             Id = 7,
-                            Choises = "[\"Option 1\",\"Option 2\",\"Option 3\",\"Option 4\"]",
-                            CorrectOptions = "[\"Option 4\"]",
-                            Points = 1,
-                            Title = "Question 7",
+                            Choises = "[\"Brain\",\"Liver\",\"Heart\",\"Skin\"]",
+                            CorrectOptions = "[\"Skin\"]",
+                            Points = 100,
+                            Title = "What’s the heaviest organ in the human body?",
                             Type = (byte)1
                         },
                         new
                         {
                             Id = 8,
                             Choises = "[]",
-                            CorrectOptions = "[\"Custom\"]",
-                            Points = 1,
-                            Title = "Question 8",
+                            CorrectOptions = "[\"K\"]",
+                            Points = 100,
+                            Title = "What is the symbol for potassium?",
                             Type = (byte)0
                         },
                         new
                         {
                             Id = 9,
-                            Choises = "[\"Option 1\",\"Option 2\",\"Option 3\",\"Option 4\"]",
-                            CorrectOptions = "[\"Option 2\",\"Option 3\"]",
-                            Points = 1,
-                            Title = "Question 9",
+                            Choises = "[\"byte\",\"bool\",\"decimal\",\"char\"]",
+                            CorrectOptions = "[\"byte\",\"bool\",\"decimal\",\"char\"]",
+                            Points = 100,
+                            Title = "In C# which types are value types?",
                             Type = (byte)2
                         },
                         new
                         {
                             Id = 10,
-                            Choises = "[\"Option 1\",\"Option 2\",\"Option 3\",\"Option 4\"]",
-                            CorrectOptions = "[\"Option 1\",\"Option 4\"]",
-                            Points = 1,
-                            Title = "Question 10",
+                            Choises = "[\"var\",\"const\",\"ref\",\"let\"]",
+                            CorrectOptions = "[\"var\",\"const\",\"let\"]",
+                            Points = 100,
+                            Title = "Which are correct ways to declare a variable in JavaScript?",
                             Type = (byte)2
                         });
                 });

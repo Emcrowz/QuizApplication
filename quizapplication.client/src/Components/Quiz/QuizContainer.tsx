@@ -3,5 +3,5 @@
 }
 
 export const QuizContainer: React.FC<QuizContainerProps> = ({ children }) => {
-  return <div className="my-4 flex justify-center">{children}</div>;
+  return <div className="flex justify-center h-screen my-6">{children}</div>;
 };

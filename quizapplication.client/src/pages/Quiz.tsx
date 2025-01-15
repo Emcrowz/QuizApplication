@@ -10,7 +10,7 @@ import { QuizContainer } from "../Components/Quiz/QuizContainer";
 import { quizStateManager } from "../Managers/QuizStateManager";
 import { Score } from "../Components/Score/Score";
 import { StartContainer } from "../Components/Start/StartContainer";
-import { API_ROUTE } from "../Constants/RoutesAndPaths";
+import { getQuestions } from "../Components/Utils/QuestionsApi";
 
 export const Quiz: React.FC = () => {
   const [{ status, participant, questions, index }, dispatch] = useReducer(
@@ -21,18 +21,20 @@ export const Quiz: React.FC = () => {
   const numberOfQuestions = questions.length;
 
   useEffect(function () {
-    fetch(API_ROUTE.QUESTIONS)
-      .then((res) => res.json())
-      .then((data) =>
-        dispatch({ type: QuizActionType.DataReceived, payload: data })
-      )
-      .catch((error) =>
-        dispatch({ type: QuizActionType.DataFail, payload: error.message })
-      );
+    const fetchQuestions = async () => {
+      try {
+        const data = await getQuestions();
+        dispatch({ type: QuizActionType.DataReceived, payload: data });
+      } catch (error) {
+        dispatch({ type: QuizActionType.DataFail, payload: error.message });
+      }
+    };
+
+    fetchQuestions();
   }, []);
 
   return (
-    <div className="h-screen items-center justify-center">
+    <div className="flex justify-center h-screen mx-auto">
       {status === QuizStatus.Loading && <Loading />}
       {status === QuizStatus.Failed && <ErrorPage />}
       {status === QuizStatus.Ready && (
@@ -59,6 +61,7 @@ export const Quiz: React.FC = () => {
           email={participant.email}
           participationDate={participant.participationDate}
           finalAnswers={participant.finalAnswers}
+          score={participant.score}
         />
       )}
     </div>

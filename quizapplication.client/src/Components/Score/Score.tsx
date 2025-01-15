@@ -1,46 +1,36 @@
 ﻿import { useNavigate } from "react-router-dom";
 import { Participant } from "../../Models/Participant";
-import { API_ROUTE } from "../../Constants/RoutesAndPaths";
 import React, { useState, useEffect } from "react";
-import { Loading } from "../Common/Loading";
-
-const participantApiPostReq = async (participant: Participant): Promise<number> => {
-    let score = 0;
-
-    try {
-        const res = await fetch(API_ROUTE.PARTICIPANT_POST, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(participant),
-        });
-        const data = await res.json();
-        score = data;
-    } catch (error) {
-        console.error("Error submitting participant:", error);
-    }
-
-    return score;
-}
+import { postParticipant } from "../Utils/ParticipantsApi";
 
 export const Score: React.FC<Participant> = ({
   email,
   name,
   participationDate,
   finalAnswers,
+  score,
 }) => {
   const navigate = useNavigate();
-    const [score, setScore] = useState<number>(0);
+  const [finalScore, setfinalScore] = useState<number>(0);
 
-    useEffect(() => {
-        const fetchScore = async () => {
-            const result = await participantApiPostReq({ name, email, participationDate, finalAnswers });
-            setScore(result);
-        };
+  useEffect(() => {
+    const submitParticipant = async () => {
+      try {
+        const data = await postParticipant({
+          email,
+          name,
+          participationDate,
+          finalAnswers,
+          score,
+        });
+        setfinalScore(data.score);
+      } catch (error) {
+        console.error("Error submitting participant:", error);
+      }
+    };
 
-        fetchScore();
-    }, [score]);
+    submitParticipant();
+  }, [email, name, participationDate, finalAnswers, score]);
 
   const handleNavigateToLeaderboard = () => {
     navigate("/leaderboard");
@@ -52,8 +42,8 @@ export const Score: React.FC<Participant> = ({
 
   return (
     <div className="mx-auto h-screen flex-col items-center">
-          <h1 className="text-6xl">Your final score: </h1>
-          <p className="text-4xl font-bold">{score === 0 ? (<Loading />) : score}</p>
+      <h1 className="text-6xl">Your final score: </h1>
+      <p className="text-4xl font-bold">{finalScore}</p>
       <div className="flex">
         <button
           type="button"

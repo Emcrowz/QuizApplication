@@ -19,7 +19,7 @@ A full stack quiz application that utilises ASP.NET Web API for backend and Reac
 
 **Backend:** C#12/.NET8, EntityFramework Core, SQLite
 
-**NPM Packages:** react-router-dom, tailwindcss
+**NPM Packages:** react-router-dom, axios, tailwindcss
 
 **NuGet Packages:** EntityFrameworkCore, EntityFrameworkCore.Design, EntityFrameworkCore.Tools, EntityFrameworkCore.Sqlite, Microsoft.AspNetCore.SpaPoxy, Moq, xunit, Swashbuckle.AspNetCore (Swagger)
 
@@ -45,15 +45,14 @@ A full stack quiz application that utilises ASP.NET Web API for backend and Reac
 ```
 
 ### HTTP and HTTPS endpoints
-Frontend endpoints are as follows:
+**Frontend** endpoints are as follows:
 - https://localhost:64905/                  Root path. Login, Quiz and Score displayed here
 - https://localhost:64905/leaderboard       Leaderboard path. Here is displayed TOP 10 quiz participants
 - https://localhost:64905/*                 Any other path will return NotFound or Error pages.
 
-API endpoints are as follows
+**API** endpoints are as follows
 
 HTTP Backend:
-- http://localhost:5170/questions/getall        [GET]   returns: IEnumerable<QuestionReadOnlyDto>
 - http://localhost:5170/participants/getall     [GET]   returns: IEnumerable<ParticipantReadOnlyDto>
 - http://localhost:5170/questions/postsingle    [POST]  returns: int; takes: ParticipantPostDto
 - http://localhost:5170/questions/gettop        [GET]   return: IEnumerable<ParticipantReadOnlyDto>
@@ -70,7 +69,8 @@ Inside `appsettings.Development.json` or `appsettings.json` replace [PATH] to th
   "SQLite": "Data Source=[PATH]LocalDb.db"
 }
 ```
-Note: System path was used so that file wouldn't appear inside bin/obj folders and be in more reachable location. __There is no valuable or sensitive data inside and can be used for development/testing purposes.__
+> [!NOTE]
+> System path was used so that file wouldn't appear inside bin/obj folders and be in more reachable location. __There is no valuable or sensitive data inside and can be used for development/testing purposes.__ Additional file `CleanDb.db` is supplied as a clean-slate db file. Location is the same.
 
 ### Frontend doesn't fetch data
 This could be the issue regarding security sertificates for the backend. If backend is used with HTTPS (Secure) then port `7129` is used otherwise - for HTTP `5170`. Then all needs to be changed is the `RoutesAndPaths.ts` file found inside the `quizapplication.client\src\Constants` folder. Change port to according protocol used.

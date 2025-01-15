@@ -34,45 +34,6 @@ public class ParticipantsControllerTests : ParticipantTestingData
     }
 
     [Fact]
-    public async Task GetQuizParticipants_ReturnsOkResult_WhenExists()
-    {
-        // Arrange
-        _mockService.Setup(service => service.GetParticipantsAsync()).ReturnsAsync(ParticipantsDto);
-
-        // Act
-        var result = await _controller.GetAll();
-
-        // Assert
-        Assert.IsType<Ok<IEnumerable<ParticipantReadOnlyDto>>>(result);
-    }
-
-    [Fact]
-    public async Task GetQuizParticipants_ReturnsNoContent_WhenEmpty()
-    {
-        // Arrange
-        _mockService.Setup(service => service.GetParticipantsAsync()).ReturnsAsync(ParticipantsDtoEmpty);
-
-        // Act
-        var result = await _controller.GetAll();
-
-        // Assert
-        Assert.IsType<NoContent>(result);
-    }
-
-    [Fact]
-    public async Task GetQuizParticipants_ReturnsProblem_OnException()
-    {
-        // Arrange
-        _mockService.Setup(service => service.GetParticipantsAsync()).ThrowsAsync(new Exception("Test exception"));
-
-        // Act
-        var result = await _controller.GetAll();
-
-        // Assert
-        Assert.IsType<ProblemHttpResult>(result);
-    }
-
-    [Fact]
     public async Task GetTop10Participants_ReturnsOkResult_WhenExists()
     {
         // Arrange

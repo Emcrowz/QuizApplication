@@ -22,6 +22,7 @@ export const ParticipantLogin: React.FC<ParticipantLoginProps> = ({
       email: (e.target as any).elements[1].value,
       participationDate: new Date(),
       finalAnswers: [],
+      score: 0,
     };
 
     dispatch({ type: QuizActionType.QuizStart, payload: newParticipant });
@@ -32,34 +33,34 @@ export const ParticipantLogin: React.FC<ParticipantLoginProps> = ({
   };
 
   return (
-    <>
+    <div className="content-center">
       <div className="">
-        <h1 className="text-5xl">Hello and welcome to the Quiz!</h1>
-        <h2 className="my-4 text-3xl">
+        <h1 className="text-center text-5xl">Hello and welcome to the Quiz!</h1>
+        <h2 className="text-center my-4 text-3xl">
           There are <strong>{numberOfQuestions}</strong> questions in total
         </h2>
-        <p className="my-8 text-2xl italic">Good luck!</p>
-        <p className="mb-4 text-xl">
+        <p className="my-8 text-center text-2xl italic">Good luck!</p>
+        <p className="mb-4 text-center text-xl">
           Type in your name and email and begin playing!
         </p>
       </div>
       <form className="" onSubmit={handleSubmit}>
-        <div className="">
+        <div className="grid grid-cols-2 gap-4 justify-center">
           <input
-            className="border-2 w-max rounded-xl p-4"
+            className="border-2 text-center rounded-xl p-4"
             type="text"
             placeholder="Name"
           />
           <input
-            className="border-2 w-max rounded-xl p-4"
+            className="border-2 text-center rounded-xl p-4"
             type="text"
             placeholder="Email"
           />
         </div>
 
-        <div className="">
+        <div className="grid mt-4">
           <button
-            className="bg-green-500/65 rounded-xl p-4 hover:bg-green-400/85"
+            className="bg-green-500/65 rounded-xl p-4 hover:bg-green-400/85 mb-4"
             type="submit"
           >
             Start
@@ -73,6 +74,6 @@ export const ParticipantLogin: React.FC<ParticipantLoginProps> = ({
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 };

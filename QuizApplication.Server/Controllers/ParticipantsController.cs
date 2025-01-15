@@ -9,25 +9,6 @@ namespace QuizApplication.Server.Controllers;
 [ApiController]
 public class ParticipantsController(IParticipantsService service) : ControllerBase
 {
-    [HttpGet]
-    public async Task<IResult> GetAll()
-    {
-        try
-        {
-            var res = await service.GetParticipantsAsync();
-            if (!res.Any())
-            {
-                return TypedResults.NoContent();
-            }
-
-            return TypedResults.Ok(res);
-        }
-        catch (Exception ex)
-        {
-            return TypedResults.Problem(detail: ex.Message);
-        }
-    }
-
     [HttpPost]
     public async Task<IResult> PostSingle(ParticipantPostDto participant)
     {

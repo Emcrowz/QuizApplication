@@ -12,8 +12,6 @@ public static class ModelConverter
             Type = entity.Type,
             Title = entity.Title,
             Choises = entity.Choises,
-            CorrectOptions = entity.CorrectOptions,
-            Points = entity.Points
         };
     }
 
@@ -33,8 +31,8 @@ public static class ModelConverter
         return new T()
         {
             Id = 0,
-            Email = entity.Email,
-            Name = entity.Name,
+            Email = string.IsNullOrWhiteSpace(entity.Email) ? "Anonymous" : entity.Email,
+            Name = string.IsNullOrWhiteSpace(entity.Name) ? "Anonymous" : entity.Name,
             ParticipationDate = entity.ParticipationDate,
             Score = entity.Score
         };

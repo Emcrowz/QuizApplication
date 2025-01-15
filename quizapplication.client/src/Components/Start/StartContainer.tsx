@@ -3,7 +3,5 @@
 }
 
 export const StartContainer: React.FC<StartContainerProps> = ({ children }) => {
-  return (
-    <div className="my-4 h-screen items-center justify-center">{children}</div>
-  );
+  return <div className="my-6 flex h-screen justify-center">{children}</div>;
 };
