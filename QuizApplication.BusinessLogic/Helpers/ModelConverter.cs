@@ -9,6 +9,7 @@ public static class ModelConverter
     {
         return new T()
         {
+            Type = entity.Type,
             Title = entity.Title,
             Choises = entity.Choises,
             CorrectOptions = entity.CorrectOptions,
