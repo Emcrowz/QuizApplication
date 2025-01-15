@@ -34,7 +34,7 @@ public static class ModelConverter
         {
             Id = 0,
             Email = entity.Email,
-            Name = entity.Email,
+            Name = entity.Name,
             ParticipationDate = entity.ParticipationDate,
             Score = entity.Score
         };
