@@ -20,8 +20,8 @@ export const ParticipantLogin: React.FC<ParticipantLoginProps> = ({
     const newParticipant: Participant = {
       name: (e.target as any).elements[0].value,
       email: (e.target as any).elements[1].value,
-      score: 0,
       participationDate: new Date(),
+      finalAnswers: [],
     };
 
     dispatch({ type: QuizActionType.QuizStart, payload: newParticipant });

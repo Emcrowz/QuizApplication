@@ -1,4 +1,3 @@
-import { ValidateCorrectAnswers } from "../Helpers/ValidateCorrectAnswers";
 import { Participant } from "../Models/Participant";
 import { Question } from "../Models/Question";
 import { QuizState } from "../Interfaces/QuizState";
@@ -27,25 +26,25 @@ export function quizStateManager(state: QuizState, action: QuizAction) {
     case QuizActionType.QuestionAnswered:
       return {
         ...state,
-        answers: action.payload as string[],
-        points: ValidateCorrectAnswers(
-          action.payload as string[],
-          state.questions.at(state.index)!.correctOptions
-        )
-          ? state.points + state.questions.at(state.index)!.points
-          : state.points,
+        participant: {
+          ...state.participant,
+          finalAnswers: [
+            ...state.participant.finalAnswers,
+            action.payload as string[],
+          ],
+        },
         index: state.index + 1,
       };
     case QuizActionType.QuestionAnsweredFinal:
       return {
         ...state,
-        answers: action.payload as string[],
-        points: ValidateCorrectAnswers(
-          action.payload as string[],
-          state.questions.at(state.index)!.correctOptions
-        )
-          ? state.points + state.questions.at(state.index)!.points
-          : state.points,
+        participant: {
+          ...state.participant,
+          finalAnswers: [
+            ...state.participant.finalAnswers,
+            action.payload as string[],
+          ],
+        },
         status: QuizStatus.Finished,
       };
     default:

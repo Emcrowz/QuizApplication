@@ -5,7 +5,7 @@ interface API {
 }
 
 export const API_ROUTE: API = {
-  QUESTIONS: "https://localhost:7219/questions/getall",
-  PARTICIPANTS: "https://localhost:7219/participants/getall",
-  TOPTEN: "https://localhost:7219/participants/gettop",
+  QUESTIONS: "http://localhost:5170/questions/getall",
+  PARTICIPANTS: "http://localhost:5170/participants/getall",
+  TOPTEN: "http://localhost:5170/participants/gettop",
 };

@@ -8,5 +8,4 @@ export interface QuizState {
   questions: Question[];
   answers: string[];
   index: number;
-  points: number;
 }

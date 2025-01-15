@@ -8,13 +8,15 @@ import { QuizActionType } from "../Constants/QuizActionType";
 import { QuestionComponent } from "../Components/Quiz/QuestionComponent";
 import { QuizContainer } from "../Components/Quiz/QuizContainer";
 import { quizStateManager } from "../Managers/QuizStateManager";
-import { Score } from "../Components/Leaderboard/Score";
+import { Score } from "../Components/Score/Score";
 import { StartContainer } from "../Components/Start/StartContainer";
 import { API_ROUTE } from "../Constants/RoutesAndPaths";
 
 export const Quiz: React.FC = () => {
-  const [{ participant, questions, status, index, points }, dispatch] =
-    useReducer(quizStateManager, quizInitialState);
+  const [{ status, participant, questions, index }, dispatch] = useReducer(
+    quizStateManager,
+    quizInitialState
+  );
 
   const numberOfQuestions = questions.length;
 
@@ -55,8 +57,8 @@ export const Quiz: React.FC = () => {
         <Score
           name={participant.name}
           email={participant.email}
-          score={points}
           participationDate={participant.participationDate}
+          finalAnswers={participant.finalAnswers}
         />
       )}
     </div>

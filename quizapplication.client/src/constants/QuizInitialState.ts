@@ -4,15 +4,14 @@ import { QuizStatus } from "./QuizStatus";
 const defaultParticipant: Participant = {
   name: "",
   email: "",
-  score: 0,
   participationDate: new Date(),
+  finalAnswers: [],
 };
 
 export const quizInitialState = {
   status: QuizStatus.Loading,
   participant: defaultParticipant,
   questions: [],
-  answers: [],
+  currentAnswer: [],
   index: 0,
-  points: 0,
 };

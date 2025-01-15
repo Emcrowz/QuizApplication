@@ -1,11 +1,12 @@
 ﻿import { useNavigate } from "react-router-dom";
 import { Participant } from "../../Models/Participant";
+import { API_ROUTE } from "../../Constants/RoutesAndPaths";
 
 export const Score: React.FC<Participant> = ({
   email,
   name,
-  score,
   participationDate,
+  finalAnswers,
 }) => {
   const navigate = useNavigate();
 
@@ -15,11 +16,13 @@ export const Score: React.FC<Participant> = ({
     const newParticipant: Participant = {
       name: name,
       email: email,
-      score: score,
       participationDate: participationDate,
+      finalAnswers: finalAnswers,
     };
 
-    fetch("https://localhost:7219/participants", {
+    console.log(newParticipant);
+
+    fetch(API_ROUTE.PARTICIPANTS, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +51,7 @@ export const Score: React.FC<Participant> = ({
   return (
     <div className="mx-auto h-screen flex-col items-center">
       <h1 className="text-6xl">Your final score: </h1>
-      <p className="text-4xl font-bold">{score}</p>
+      <p className="text-4xl font-bold">score</p>
       <p className=" text-4xl italic">
         Do you want to submit your result to leaderboard?
       </p>
