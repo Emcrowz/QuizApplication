@@ -4,10 +4,10 @@ using QuizApplication.DataAccess.Models;
 
 namespace QuizApplication.DataAccess.Context;
 
-public class QuizDbContext(DbContextOptions<QuizDbContext> options) : DbContext(options)
+public sealed class QuizDbContext(DbContextOptions<QuizDbContext> context) : DbContext(context)
 {
-    public DbSet<Question> Questions { get; init; }
-    public DbSet<Participant> Participants { get; init; }
+    public DbSet<Question> Questions { get; set; }
+    public DbSet<Participant> Participants { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -101,6 +101,121 @@ public class QuizDbContext(DbContextOptions<QuizDbContext> options) : DbContext(
                 Choises = ["var", "const", "ref", "let"],
                 CorrectOptions = ["var", "const", "let"],
                 Points = 100
+            }
+        );
+
+        modelBuilder.Entity<Participant>().HasData(
+            new Participant() {
+                Id = 1,
+                Name = "Person",
+                Email = "person@mail.com",
+                ParticipationDate = DateTime.Parse("2024-03-01"),
+                Score = 400
+            },
+            new Participant() {
+                Id = 2,
+                Name = "Someone",
+                Email = "some@one.com",
+                ParticipationDate = DateTime.Parse("2024-03-01"),
+                Score = 633
+            },
+            new Participant() {
+                Id = 3,
+                Name = "John Doe",
+                Email = "john.doe@example.com",
+                ParticipationDate = DateTime.Parse("2024-03-02"),
+                Score = 500
+            },
+            new Participant() {
+                Id = 4,
+                Name = "Jane Smith",
+                Email = "jane.smith@example.com",
+                ParticipationDate = DateTime.Parse("2024-03-03"),
+                Score = 450
+            },
+            new Participant() {
+                Id = 5,
+                Name = "Alice Johnson",
+                Email = "alice.johnson@example.com",
+                ParticipationDate = DateTime.Parse("2024-03-04"),
+                Score = 550
+            },
+            new Participant() {
+                Id = 6,
+                Name = "Bob Brown",
+                Email = "bob.brown@example.com",
+                ParticipationDate = DateTime.Parse("2024-03-05"),
+                Score = 600
+            },
+            new Participant() {
+                Id = 7,
+                Name = "Charlie Davis",
+                Email = "charlie.davis@example.com",
+                ParticipationDate = DateTime.Parse("2024-03-06"),
+                Score = 620
+            },
+            new Participant() {
+                Id = 8,
+                Name = "Diana Evans",
+                Email = "diana.evans@example.com",
+                ParticipationDate = DateTime.Parse("2024-03-07"),
+                Score = 480
+            },
+            new Participant() {
+                Id = 9,
+                Name = "Ethan Harris",
+                Email = "ethan.harris@example.com",
+                ParticipationDate = DateTime.Parse("2024-03-08"),
+                Score = 530
+            },
+            new Participant() {
+                Id = 10,
+                Name = "Fiona Clark",
+                Email = "fiona.clark@example.com",
+                ParticipationDate = DateTime.Parse("2024-03-09"),
+                Score = 470
+            },
+            new Participant() {
+                Id = 11,
+                Name = "George Lewis",
+                Email = "george.lewis@example.com",
+                ParticipationDate = DateTime.Parse("2024-03-10"),
+                Score = 490
+            },
+            new Participant() {
+                Id = 12,
+                Name = "Hannah Walker",
+                Email = "hannah.walker@example.com",
+                ParticipationDate = DateTime.Parse("2024-03-11"),
+                Score = 510
+            },
+            new Participant() {
+                Id = 13,
+                Name = "Ian Young",
+                Email = "ian.young@example.com",
+                ParticipationDate = DateTime.Parse("2024-03-12"),
+                Score = 580
+            },
+            new Participant() {
+                Id = 14,
+                Name = "Jessica King",
+                Email = "jessica.king@example.com",
+                ParticipationDate = DateTime.Parse("2024-03-13"),
+                Score = 560
+            },
+            new Participant() {
+                Id = 15,
+                Name = "Kevin Scott",
+                Email = "kevin.scott@example.com",
+                ParticipationDate = DateTime.Parse("2024-03-14"),
+                Score = 540
+            },
+            new Participant() {
+                Id = 16,
+                Name = "Laura Martinez",
+                Email = "laura.martinez@example.com",
+                ParticipationDate = DateTime.Parse("2024-03-15"),
+                Score = 590
             }
         );
     }

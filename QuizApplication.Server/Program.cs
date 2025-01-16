@@ -10,8 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // EF Core
-builder.Services.AddDbContext<QuizDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString(ConstantValues.DefaultConnection)));
+builder.Services.AddDbContext<QuizDbContext>(options => options.UseInMemoryDatabase(ConstantValues.InMemory));
 
 // DI Containers
 builder.Services.AddScoped<IQuestionsService, QuestionsService>();

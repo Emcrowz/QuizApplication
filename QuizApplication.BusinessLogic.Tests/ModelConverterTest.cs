@@ -21,7 +21,7 @@ public class ModelConverterTest
         };
 
         // Act
-        var result = ModelConverter.ConvertQuestionToReadOnlyDTO<QuestionReadOnlyDto>(question);
+        var result = ModelConverter.ConvertQuestionToReadOnlyDTO(question);
 
         // Assert
         Assert.Equal(question.Type, result.Type);
@@ -42,7 +42,7 @@ public class ModelConverterTest
         };
 
         // Act
-        var result = ModelConverter.ConvertParticipantToReadOnlyDTO<ParticipantReadOnlyDto>(participant);
+        var result = ModelConverter.ConvertParticipantToReadOnlyDTO(participant);
 
         // Assert
         Assert.Equal(participant.Email, result.Email);
@@ -64,7 +64,7 @@ public class ModelConverterTest
         };
 
         // Act
-        var result = ModelConverter.ConvertParticipantPostDtoToModel<Participant>(participantPostDto);
+        var result = ModelConverter.ConvertParticipantPostDtoToModel(participantPostDto);
 
         // Assert
         Assert.Equal(0, result.Id);
