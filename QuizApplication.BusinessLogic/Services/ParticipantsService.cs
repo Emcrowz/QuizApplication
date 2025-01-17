@@ -14,39 +14,22 @@ public class ParticipantsService(QuizDbContext context) : IParticipantsService
     private readonly IParticipantRepository _participantRepository = new ParticipantRepository(context);
     private readonly IQuestionRepository _questionRepository = new QuestionRepository(context);
 
-    public async Task<IEnumerable<ParticipantReadOnlyDto>> GetParticipantsAsync()
-    {
-        var data = await _participantRepository.GetAllAsync();
-
-        List<ParticipantReadOnlyDto> dtos = [];
-        foreach (Participant participant in data)
-        {
-            dtos.Add(ModelConverter.ConvertParticipantToReadOnlyDTO<ParticipantReadOnlyDto>(participant));
-        }
-
-        return dtos;
-    }
-
     public async Task<IEnumerable<ParticipantReadOnlyDto>> GetTop10ParticipantsForLeaderboardAsync()
     {
-        var data = await _participantRepository.GetAllAsync();
+        IEnumerable<Participant> data = await _participantRepository.GetAllAsync();
 
-        List<ParticipantReadOnlyDto> dtos = [];
-        foreach (Participant participant in data)
-        {
-            dtos.Add(ModelConverter.ConvertParticipantToReadOnlyDTO<ParticipantReadOnlyDto>(participant));
-        }
+        IEnumerable<ParticipantReadOnlyDto> dtos = ModelConverter.ConvertParticipantsToDtos(data);
 
         return dtos.OrderByDescending(o => o.Score).Take(10);
     }
 
-    public async Task<int> PostParticipantAsync(ParticipantPostDto entity)
+    public async Task<int> PostParticipantAsync(ParticipantPostDto newParticipant)
     {
-        var data = ModelConverter.ConvertParticipantPostDtoToModel<Participant>(entity);
-        data.Score = await CalculateParticipantScore(entity.FinalAnswers!);
+        Participant data = ModelConverter.ConvertParticipantPostDtoToModel(newParticipant);
+        data.Score = await CalculateParticipantScore(newParticipant.FinalAnswers!);
 
-        var res = await _participantRepository.AddAsync(data);
-        return res.Score;
+        Participant participant = await _participantRepository.AddAsync(data);
+        return participant.Score;
     }
 
     private async Task<int> CalculateParticipantScore(string[][] answers)

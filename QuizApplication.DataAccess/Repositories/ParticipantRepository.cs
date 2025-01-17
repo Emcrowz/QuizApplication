@@ -5,7 +5,10 @@ using QuizApplication.DataAccess.Repositories.Contracts;
 
 namespace QuizApplication.DataAccess.Repositories;
 
-public class ParticipantRepository(QuizDbContext context) : AbstractRepository<Participant>(context), IParticipantRepository
+public class ParticipantRepository : AbstractRepository<Participant>, IParticipantRepository
 {
-    
+    public ParticipantRepository(QuizDbContext context) : base (context)
+    {
+        context.Database.EnsureCreatedAsync();
+    }
 }

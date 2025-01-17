@@ -47,7 +47,15 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            '^/weatherforecast': {
+            '^/questions/getall': {
+                target,
+                secure: false
+            },
+            '^/participants/gettop': {
+                target,
+                secure: false
+            },
+            '^/participants/postsingle': {
                 target,
                 secure: false
             }

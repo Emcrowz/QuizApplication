@@ -14,13 +14,9 @@ public class QuestionsService(QuizDbContext context) : IQuestionsService
 
     public async Task<IEnumerable<QuestionReadOnlyDto>> GetQuestionsAsync()
     {
-        var data = await _repository.GetAllAsync();
+        IEnumerable<Question> data = await _repository.GetAllAsync();
 
-        List<QuestionReadOnlyDto> dtos = [];
-        foreach (Question question in data)
-        {
-            dtos.Add(ModelConverter.ConvertQuestionToReadOnlyDTO<QuestionReadOnlyDto>(question));
-        }
+        IEnumerable<QuestionReadOnlyDto> dtos = ModelConverter.ConvertQuestionsToDtos(data);
 
         return dtos;
     }

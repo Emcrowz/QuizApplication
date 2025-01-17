@@ -1,3 +1,64 @@
-@QuizApplication.Server_HostAddress = http://localhost:5170
+@hostname=localhost
+@httpport=5170
+@httpsport=7219
+@httphost={{hostname}}:{{httpport}}
+@httpshost={{hostname}}:{{httpsport}}
+
+GET http://{{httphost}}/questions/getall
+Accept: application/json
 
 ###
+
+GET http://{{httphost}}/participants/gettop
+Accept: application/json
+
+###
+
+POST http://{{httphost}}/participants/postsingle
+Content-Type: application/json
+Accept-Language: en-US,en
+
+{
+    "name": "Test Call",
+    "email": "test@request.com",
+    "participationDate": "2021-05-18T09:23:51.808Z",
+    "finalAnswers": [
+        [
+            "Canned Tuna"
+        ],
+        [
+            "Python",
+            "SQL"
+        ],
+        [
+            "Forbidden City"
+        ],
+        [
+            "Netron"
+        ],
+        [
+            "Sr",
+            "Xe",
+            "D"
+        ],
+        [
+            ""
+        ],
+        [
+            ""
+        ],
+        [
+            "K"
+        ],
+        [
+            "byte",
+            "bool",
+            "decimal",
+            "char"
+        ],
+        [
+            "var",
+            "let"
+        ]
+    ]
+}

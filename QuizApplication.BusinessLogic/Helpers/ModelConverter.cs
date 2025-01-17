@@ -5,9 +5,9 @@ namespace QuizApplication.BusinessLogic.Helpers;
 
 public static class ModelConverter
 {
-    public static T ConvertQuestionToReadOnlyDTO<T>(Question entity) where T : QuestionReadOnlyDto, new()
+    public static QuestionReadOnlyDto ConvertQuestionToReadOnlyDTO(Question entity)
     {
-        return new T()
+        return new QuestionReadOnlyDto()
         {
             Type = entity.Type,
             Title = entity.Title,
@@ -15,9 +15,9 @@ public static class ModelConverter
         };
     }
 
-    public static T ConvertParticipantToReadOnlyDTO<T>(Participant entity) where T : ParticipantReadOnlyDto, new()
+    public static ParticipantReadOnlyDto ConvertParticipantToReadOnlyDTO(Participant entity)
     {
-        return new T()
+        return new ParticipantReadOnlyDto()
         {
             Email = entity.Email,
             Name = entity.Name,
@@ -26,9 +26,9 @@ public static class ModelConverter
         };
     }
 
-    public static T ConvertParticipantPostDtoToModel<T>(ParticipantPostDto entity) where T : Participant, new()
+    public static Participant ConvertParticipantPostDtoToModel(ParticipantPostDto entity)
     {
-        return new T()
+        return new Participant()
         {
             Id = 0,
             Email = string.IsNullOrWhiteSpace(entity.Email) ? "Anonymous" : entity.Email,
@@ -36,5 +36,27 @@ public static class ModelConverter
             ParticipationDate = entity.ParticipationDate,
             Score = entity.Score
         };
+    }
+
+    public static IEnumerable<QuestionReadOnlyDto> ConvertQuestionsToDtos(IEnumerable<Question> questions)
+    {
+        List<QuestionReadOnlyDto> dtos = [];
+        foreach (Question question in questions)
+        {
+            dtos.Add(ConvertQuestionToReadOnlyDTO(question));
+        }
+
+        return dtos;
+    }
+
+    public static IEnumerable<ParticipantReadOnlyDto> ConvertParticipantsToDtos(IEnumerable<Participant> participants)
+    {
+        List<ParticipantReadOnlyDto> dtos = [];
+        foreach (Participant participant in participants)
+        {
+            dtos.Add(ConvertParticipantToReadOnlyDTO(participant));
+        }
+
+        return dtos;
     }
 }
