@@ -73,4 +73,44 @@ public class ModelConverterTest
         Assert.Equal(participantPostDto.ParticipationDate, result.ParticipationDate);
         Assert.Equal(participantPostDto.Score, result.Score);
     }
+
+    [Fact]
+    public void ConvertQuestionsToDtos_ShouldReturnCorrectDtos()
+    {
+        // Arrange
+        var questions = new List<Question>
+        {
+            new Question { Type = QuestionType.Single, Title = "Question 1", Choises = new List<string> { "Option 1", "Option 2" } },
+            new Question { Type = QuestionType.Multiple, Title = "Question 2", Choises = new List<string> { "Option A", "Option B" } }
+        };
+
+        // Act
+        var result = ModelConverter.ConvertQuestionsToDtos(questions);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(2, result.Count());
+        Assert.Equal("Question 1", result.First().Title);
+        Assert.Equal("Question 2", result.Last().Title);
+    }
+
+    [Fact]
+    public void ConvertParticipantsToDtos_ShouldReturnCorrectDtos()
+    {
+        // Arrange
+        var participants = new List<Participant>
+        {
+            new Participant { Email = "test1@example.com", Name = "Test User 1", ParticipationDate = DateTime.Now, Score = 10 },
+            new Participant { Email = "test2@example.com", Name = "Test User 2", ParticipationDate = DateTime.Now, Score = 20 }
+        };
+
+        // Act
+        var result = ModelConverter.ConvertParticipantsToDtos(participants);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(2, result.Count());
+        Assert.Equal("test1@example.com", result.First().Email);
+        Assert.Equal("test2@example.com", result.Last().Email);
+    }
 }

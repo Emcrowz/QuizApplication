@@ -3,8 +3,22 @@ using QuizApplication.BusinessLogic.Services;
 using QuizApplication.BusinessLogic.Services.Contracts;
 using QuizApplication.DataAccess.Context;
 using QuizApplication.Server.Constants;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+#region Configuration setup
+IConfiguration config = new ConfigurationBuilder()
+    .AddJsonFile(builder.Environment.IsDevelopment() ? ConstantValues.DevelopmentConfig : ConstantValues.GeneralConfig)
+    .AddEnvironmentVariables()
+    .Build();
+#endregion
+
+#region Logger configuration
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(config)
+    .CreateLogger();
+#endregion
 
 #region Services/Repositories
 builder.Services.AddControllers();
@@ -21,7 +35,7 @@ builder.Services.AddSwaggerGen();
 
 // CORS for React
 builder.Services.AddCors(options =>
-    options.AddPolicy(ConstantValues.DevelopmentCORS, policy => policy.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin()));
+    options.AddPolicy(ConstantValues.DevelopmentCors, policy => policy.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin()));
 #endregion
 
 var app = builder.Build();
@@ -34,7 +48,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 
-    app.UseCors(ConstantValues.DevelopmentCORS);
+    app.UseCors(ConstantValues.DevelopmentCors);
 }
 app.UseHttpsRedirection();
 
@@ -43,3 +57,4 @@ app.MapControllers();
 app.MapFallbackToFile("/index.html");
 
 await app.RunAsync();
+await Log.CloseAndFlushAsync();

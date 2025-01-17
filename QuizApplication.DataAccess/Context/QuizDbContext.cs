@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Globalization;
+using Microsoft.EntityFrameworkCore;
 using QuizApplication.DataAccess.Constants;
 using QuizApplication.DataAccess.Models;
 
@@ -109,112 +110,112 @@ public sealed class QuizDbContext(DbContextOptions<QuizDbContext> context) : DbC
                 Id = 1,
                 Name = "Person",
                 Email = "person@mail.com",
-                ParticipationDate = DateTime.Parse("2024-03-01"),
+                ParticipationDate = DateTime.Parse("2024-03-01", CultureInfo.InvariantCulture),
                 Score = 400
             },
             new Participant() {
                 Id = 2,
                 Name = "Someone",
                 Email = "some@one.com",
-                ParticipationDate = DateTime.Parse("2024-03-01"),
+                ParticipationDate = DateTime.Parse("2024-03-01", CultureInfo.InvariantCulture),
                 Score = 633
             },
             new Participant() {
                 Id = 3,
                 Name = "John Doe",
                 Email = "john.doe@example.com",
-                ParticipationDate = DateTime.Parse("2024-03-02"),
+                ParticipationDate = DateTime.Parse("2024-03-02", CultureInfo.InvariantCulture),
                 Score = 500
             },
             new Participant() {
                 Id = 4,
                 Name = "Jane Smith",
                 Email = "jane.smith@example.com",
-                ParticipationDate = DateTime.Parse("2024-03-03"),
+                ParticipationDate = DateTime.Parse("2024-03-03", CultureInfo.InvariantCulture),
                 Score = 450
             },
             new Participant() {
                 Id = 5,
                 Name = "Alice Johnson",
                 Email = "alice.johnson@example.com",
-                ParticipationDate = DateTime.Parse("2024-03-04"),
+                ParticipationDate = DateTime.Parse("2024-03-04", CultureInfo.InvariantCulture),
                 Score = 550
             },
             new Participant() {
                 Id = 6,
                 Name = "Bob Brown",
                 Email = "bob.brown@example.com",
-                ParticipationDate = DateTime.Parse("2024-03-05"),
+                ParticipationDate = DateTime.Parse("2024-03-05", CultureInfo.InvariantCulture),
                 Score = 600
             },
             new Participant() {
                 Id = 7,
                 Name = "Charlie Davis",
                 Email = "charlie.davis@example.com",
-                ParticipationDate = DateTime.Parse("2024-03-06"),
+                ParticipationDate = DateTime.Parse("2024-03-06", CultureInfo.InvariantCulture),
                 Score = 620
             },
             new Participant() {
                 Id = 8,
                 Name = "Diana Evans",
                 Email = "diana.evans@example.com",
-                ParticipationDate = DateTime.Parse("2024-03-07"),
+                ParticipationDate = DateTime.Parse("2024-03-07", CultureInfo.InvariantCulture),
                 Score = 480
             },
             new Participant() {
                 Id = 9,
                 Name = "Ethan Harris",
                 Email = "ethan.harris@example.com",
-                ParticipationDate = DateTime.Parse("2024-03-08"),
+                ParticipationDate = DateTime.Parse("2024-03-08", CultureInfo.InvariantCulture),
                 Score = 530
             },
             new Participant() {
                 Id = 10,
                 Name = "Fiona Clark",
                 Email = "fiona.clark@example.com",
-                ParticipationDate = DateTime.Parse("2024-03-09"),
+                ParticipationDate = DateTime.Parse("2024-03-09", CultureInfo.InvariantCulture),
                 Score = 470
             },
             new Participant() {
                 Id = 11,
                 Name = "George Lewis",
                 Email = "george.lewis@example.com",
-                ParticipationDate = DateTime.Parse("2024-03-10"),
+                ParticipationDate = DateTime.Parse("2024-03-10", CultureInfo.InvariantCulture),
                 Score = 490
             },
             new Participant() {
                 Id = 12,
                 Name = "Hannah Walker",
                 Email = "hannah.walker@example.com",
-                ParticipationDate = DateTime.Parse("2024-03-11"),
+                ParticipationDate = DateTime.Parse("2024-03-11", CultureInfo.InvariantCulture),
                 Score = 510
             },
             new Participant() {
                 Id = 13,
                 Name = "Ian Young",
                 Email = "ian.young@example.com",
-                ParticipationDate = DateTime.Parse("2024-03-12"),
+                ParticipationDate = DateTime.Parse("2024-03-12", CultureInfo.InvariantCulture),
                 Score = 580
             },
             new Participant() {
                 Id = 14,
                 Name = "Jessica King",
                 Email = "jessica.king@example.com",
-                ParticipationDate = DateTime.Parse("2024-03-13"),
+                ParticipationDate = DateTime.Parse("2024-03-13", CultureInfo.InvariantCulture),
                 Score = 560
             },
             new Participant() {
                 Id = 15,
                 Name = "Kevin Scott",
                 Email = "kevin.scott@example.com",
-                ParticipationDate = DateTime.Parse("2024-03-14"),
+                ParticipationDate = DateTime.Parse("2024-03-14", CultureInfo.InvariantCulture),
                 Score = 540
             },
             new Participant() {
                 Id = 16,
                 Name = "Laura Martinez",
                 Email = "laura.martinez@example.com",
-                ParticipationDate = DateTime.Parse("2024-03-15"),
+                ParticipationDate = DateTime.Parse("2024-03-15", CultureInfo.InvariantCulture),
                 Score = 590
             }
         );

@@ -5,5 +5,8 @@ public struct ConstantValues
     public const string DefaultConnection = "SQLite";
     public const string InMemory = "InMemory";
 
-    public const string DevelopmentCORS = "Development";
+    public const string GeneralConfig = "appsettings.json";
+    public const string DevelopmentConfig = "appsettings.Development.json";
+
+    public const string DevelopmentCors = "Development";
 }

@@ -7,4 +7,4 @@ public record ParticipantPostDto
     public DateTime ParticipationDate { get; init; }
     public string[][]? FinalAnswers { get; init; }
     public int Score { get; init; }
- }
+}
