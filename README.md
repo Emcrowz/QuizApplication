@@ -4,7 +4,7 @@ A full stack quiz application that utilises ASP.NET Web API for backend and Reac
 
 ## Roadmap
 
-1. Serilog (Logging) implementation to backend
+1. ~~Serilog (Logging) implementation to backend~~ (Finished: [PR#7](https://github.com/Emcrowz/QuizApplication/pull/7))
 2. Indepth unit testing for backend
 3. Frontend unit tests
 4. Bug and known issue fixes
@@ -17,11 +17,11 @@ A full stack quiz application that utilises ASP.NET Web API for backend and Reac
 
 **Server:** ASP.NET Core Web API (With Controllers)
 
-**Backend:** C#12/.NET8, EntityFramework Core, SQLite
+**Backend:** C#12/.NET8, EntityFramework Core, SQLite/InMemory
 
 **NPM Packages:** react-router-dom, axios, tailwindcss
 
-**NuGet Packages:** EntityFrameworkCore, EntityFrameworkCore.Design, EntityFrameworkCore.Tools, EntityFrameworkCore.Sqlite, Microsoft.AspNetCore.SpaPoxy, Moq, xunit, Swashbuckle.AspNetCore (Swagger)
+**NuGet Packages:** EntityFrameworkCore, EntityFrameworkCore.Design, EntityFrameworkCore.Tools, EntityFrameworkCore.Sqlite, Microsoft.EntityFrameworkCore.InMemory, Microsoft.AspNetCore.SpaPoxy, Moq, xunit, Swashbuckle.AspNetCore (Swagger)
 
 ## Installation
 
@@ -66,8 +66,18 @@ HTTPS Backend:
 
 ## Troubleshooting and potential issues
 ### LocalDb.db file linking in the backend
+By default since [PR#7](https://github.com/Emcrowz/QuizApplication/pull/7) default DB is used as InMemory for testing and showcase purposes. To use SQLite one line of code needs to be changed inside `QuizApplication.Server\Program.cs` file:
+```
+builder.Services.AddDbContext<QuizDbContext>(options => options.UseInMemoryDatabase(ConstantValues.InMemory));
+```
 
-Inside `appsettings.Development.json` or `appsettings.json` replace [PATH] to the location of the file. File is found inside `QuizApplication.DataAccess` project. 
+needs to be changed to:
+
+```
+builder.Services.AddDbContext<QuizDbContext>(options => options.UseSqlite(config.GetConnectionString(ConstantValues.DefaultConnection)));
+```
+
+and inside `appsettings.Development.json` or `appsettings.json` replace [PATH] to the location of the file. File is found inside `QuizApplication.DataAccess` project. 
 ```
 "ConnectionStrings": {
   "SQLite": "Data Source=[PATH]LocalDb.db"
