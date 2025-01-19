@@ -7,7 +7,7 @@ A full stack quiz application that utilises ASP.NET Web API for backend and Reac
 1. ~~Serilog (Logging) implementation to backend~~ (Finished: [PR#7](https://github.com/Emcrowz/QuizApplication/pull/7))
 2. Indepth unit testing for backend
 3. Frontend unit tests
-4. Bug and known issue fixes
+4. ~~Bug and known issue fixes~~ (Finished: [PR#8](https://github.com/Emcrowz/QuizApplication/pull/8))
 5. Design implementation
 6. Docker containerization
 
@@ -21,13 +21,23 @@ A full stack quiz application that utilises ASP.NET Web API for backend and Reac
 
 **NPM Packages:** react-router-dom, axios, tailwindcss
 
-**NuGet Packages:** EntityFrameworkCore, EntityFrameworkCore.Design, EntityFrameworkCore.Tools, EntityFrameworkCore.Sqlite, Microsoft.EntityFrameworkCore.InMemory, Microsoft.AspNetCore.SpaPoxy, Moq, xunit, Swashbuckle.AspNetCore (Swagger)
+**NuGet Packages:** EntityFrameworkCore, EntityFrameworkCore.Design, EntityFrameworkCore.Tools, EntityFrameworkCore.Sqlite, Microsoft.EntityFrameworkCore.InMemory, Microsoft.AspNetCore.SpaPoxy, Moq, xunit, Swashbuckle.AspNetCore (Swagger), Serilog.AspNetCore, Serilog.Sinks.Console, Serilog.Sinks.File
 
-## Installation
+## Prerequisites
+1. .NET SDK 8.404 or higher | Can be downloaded here: [.NET SDK 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+2. NodeJS v22.13.0 or higher | Can be downloaded here: [NodeJS](https://nodejs.org/en/download)
+3. NPM 10.8.2 or higher | Included with NodeJS download.
 
-> [!WARNING]
-> One of the manual configurations is the PATH to the SQLite db file. Database file is provided with the project. However on different systems needs to be manually linked inside APPSETTINGS.DEVELOPMENT.JSON or APPSETTINGS.JSON file.
+## Global project launch
+It is possible to start the project using a bash script that is found inside the root project folder, named: `ProjectStart.sh`. 
 
+Using bash type and press enter:
+```bash
+bash ProjectStart.sh
+```
+When the script is launched you can press [X] to terminate all of the running background nodejs and dotnet processes thus finishing work of both frontend and backend application execution.
+
+## Project launch by layers
 ### Frontend React/TypeScript
 
 ```bash
@@ -44,6 +54,7 @@ A full stack quiz application that utilises ASP.NET Web API for backend and Reac
   dotnet run
 ```
 
+## Technical project information
 ### HTTP and HTTPS endpoints
 **Frontend** endpoints are as follows:
 | Endpoint | Description |
@@ -64,8 +75,8 @@ HTTP Backend:
 HTTPS Backend:
 - Instead of `5170` - `7219` is being used with HTTPS. Enpoints are the same.
 
-## Troubleshooting and potential issues
-### LocalDb.db file linking in the backend
+## Optional configurations
+### LocalDb.db file linking to use SQLite instead of InMemory database
 By default since [PR#7](https://github.com/Emcrowz/QuizApplication/pull/7) default DB is used as InMemory for testing and showcase purposes. To use SQLite one line of code needs to be changed inside `QuizApplication.Server\Program.cs` file:
 ```
 builder.Services.AddDbContext<QuizDbContext>(options => options.UseInMemoryDatabase(ConstantValues.InMemory));
@@ -86,6 +97,7 @@ and inside `appsettings.Development.json` or `appsettings.json` replace [PATH] t
 > [!NOTE]
 > System path was used so that file wouldn't appear inside bin/obj folders and be in more reachable location. __There is no valuable or sensitive data inside and can be used for development/testing purposes.__ Additional file `CleanDb.db` is supplied as a clean-slate db file. Location is the same.
 
+## Potential issues and workarounds
 ### Frontend doesn't fetch data
 This could be the issue regarding security sertificates for the backend. If backend is used with HTTPS (Secure) then port `7129` is used otherwise - for HTTP `5170`. Then what needs to be changed is the port inside `AxiosInstance.ts` file found inside the `quizapplication.client\src\Config` folder. Change port to according protocol used.
 
