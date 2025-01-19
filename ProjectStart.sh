@@ -1,6 +1,4 @@
 echo "QuizApplication project is launching"
-echo "[API]: http://localhost:5170 (HTTP) | https://localhost:7219 (HTTPS)"
-echo "[Client]: https://localhost:64905" 
 echo ""
 
 echo "Web API booting..."
@@ -11,29 +9,22 @@ echo "Web client (React/TS) booting..."
 (cd ./quizapplication.client && npm install && npm run dev) &
 CLIENT_PID=$!
 
-echo "Web API PID: $API_PID"
-echo "Web client PID: $CLIENT_PID"
-
 # Function to terminate both processes
 terminate_processes() {
-    # Check if the API process is running
-    if ps -p $API_PID > /dev/null; then
-        # Terminate the API process
-        kill $API_PID
-        echo "[API] process $API_PID has been terminated."
-    else
-        echo "[API] process $API_PID is not running."
-    fi
+    echo "== NodeJS and Dotnet background process cleanup =="
+    echo "=Starting background nodejs cleanup.="
+    pkill -fe 'node'
+    echo "=All node processes terminated.="
 
-    # Check if the client process is running
-    if ps -p $CLIENT_PID > /dev/null; then
-        # Terminate the client process
-        kill $CLIENT_PID
-        echo "[Client] process $CLIENT_PID has been terminated."
-    else
-        echo "[Client] process $CLIENT_PID is not running."
-    fi
+    echo "=Starting background dotnet cleanup.="
+    pkill -fe 'dotnet'
+    echo "=All dotnet processes terminated.="
 }
+
+echo "[Web API]: http://localhost:5170 (HTTP) | https://localhost:7219 (HTTPS)"
+echo "[Web Client]: https://localhost:64905" 
+echo "[Web API] PID: $API_PID"
+echo "[Web client] PID: $CLIENT_PID"
 
 # Wait for user input to terminate processes
 echo "Type [X] and press [Enter] to terminate both running processes."
@@ -44,8 +35,3 @@ while : ; do
         break
     fi
 done
-
-echo "Starting background nodejs cleanup."
-NODE_PID=$(pidof node)
-echo "PID: [$NODE_PID]. Terminated."
-kill $NODE_PID
