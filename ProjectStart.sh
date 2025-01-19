@@ -27,7 +27,7 @@ echo "[Web API] PID: $API_PID"
 echo "[Web client] PID: $CLIENT_PID"
 
 # Wait for user input to terminate processes
-echo "Type [X] and press [Enter] to terminate both running processes."
+echo "Press [X] to terminate both running processes."
 while : ; do
     read -n 1 key
     if [[ $key = X ]]; then

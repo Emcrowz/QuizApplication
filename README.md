@@ -89,13 +89,8 @@ and inside `appsettings.Development.json` or `appsettings.json` replace [PATH] t
 ### Frontend doesn't fetch data
 This could be the issue regarding security sertificates for the backend. If backend is used with HTTPS (Secure) then port `7129` is used otherwise - for HTTP `5170`. Then what needs to be changed is the port inside `AxiosInstance.ts` file found inside the `quizapplication.client\src\Config` folder. Change port to according protocol used.
 
-### Score is submitted two times from one call
-After the quiz is over and finalized - POST request is sent two times instead of one so it creates a duplicated record inside db.
-
-*Known issue. Will be addressed and changed in the future commits/pull-requests.*
-
 ## Authors
 
 - Martynas Vrubliauskas [@emcrowz](https://www.github.com/emcrowz)
 
-Project last updated: 2025-01-15
+Project last updated: 2025-01-19
