@@ -48,20 +48,24 @@ export const Choises: React.FC<ChoisesProps> = ({
     <form className="grid" onSubmit={(e) => e.preventDefault()}>
       {question.type === QuestionType.Single ? (
         <div className="mb-4">
-          <p className="text-sm text-center italic">
+          <p className="text-sm text-center italic select-none">
             Select single correct answer
           </p>
           <ul className="grid grid-cols-4 max-w-screen-sm:grid-cols-2 mb-4">
             {question.choises.map((choise) => (
               <li key={choise}>
                 <input
+                  id={`choice-${choise}`}
                   name="singleChoice"
                   value={choise}
                   type="radio"
                   checked={selectedAnswers.includes(choise)}
                   onChange={handleChange}
                 />
-                <label htmlFor={choise} className="ml-2 text-gray-700">
+                <label
+                  htmlFor={`choise-${choise}`}
+                  className="ml-2 text-gray-700"
+                >
                   {choise}
                 </label>
               </li>
@@ -70,20 +74,24 @@ export const Choises: React.FC<ChoisesProps> = ({
         </div>
       ) : question.type === QuestionType.Multiple ? (
         <div className="mb-4">
-          <p className="text-sm text-center italic">
+          <p className="text-sm text-center italic select-none">
             Select multiple correct answers
           </p>
           <ul className="grid grid-cols-4 max-w-screen-sm:grid-cols-2 mb-4">
             {question.choises.map((choise) => (
               <li key={choise}>
                 <input
+                  id={`choice-${choise}`}
                   name="multipleChoice"
                   value={choise}
                   type="checkbox"
                   checked={selectedAnswers.includes(choise)}
                   onChange={handleChange}
                 />
-                <label htmlFor={choise} className="ml-2 text-gray-700">
+                <label
+                  htmlFor={`choice-${choise}`}
+                  className="ml-2 text-gray-700"
+                >
                   {choise}
                 </label>
               </li>
@@ -92,7 +100,9 @@ export const Choises: React.FC<ChoisesProps> = ({
         </div>
       ) : question.type === QuestionType.Typed ? (
         <div className="mb-4 grid">
-          <p className="text-sm text-center italic">Type in correct answer</p>
+          <p className="text-sm text-center italic select-none">
+            Type in correct answer
+          </p>
           <input
             className="border-2 rounded-xl p-4 text-center"
             type="text"

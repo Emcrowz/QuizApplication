@@ -18,13 +18,17 @@ export const QuestionComponent: React.FC<QuestionProps> = ({
 }) => {
   return (
     <div className="content-center w-2/3">
-      <h1 className="mb-4 break-words text-6xl">{question.title}</h1>
-      <Choises
-        question={question}
-        dispatch={dispatch}
-        index={index}
-        numberOfQuestions={numberOfQuestions}
-      />
+      <div className="border-2 border-blue-300/50 p-12 rounded-xl bg-blue-300/75">
+        <h1 className="mb-4 break-words text-6xl select-none">
+          {question.title}
+        </h1>
+        <Choises
+          question={question}
+          dispatch={dispatch}
+          index={index}
+          numberOfQuestions={numberOfQuestions}
+        />
+      </div>
     </div>
   );
 };
