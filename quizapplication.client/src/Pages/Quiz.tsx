@@ -4,13 +4,13 @@ import { ErrorPage } from "./ErrorPage";
 import { quizInitialState } from "../Constants/QuizInitialState";
 import { ParticipantLogin } from "../Components/Start/ParticipantLogin";
 import { QuizStatus } from "../Constants/QuizStatus";
-import { QuizActionType } from "../Constants/QuizActionType";
 import { QuestionComponent } from "../Components/Quiz/QuestionComponent";
 import { QuizContainer } from "../Components/Quiz/QuizContainer";
 import { quizStateManager } from "../Managers/QuizStateManager";
 import { Score } from "../Components/Score/Score";
 import { StartContainer } from "../Components/Start/StartContainer";
-import { getQuestions } from "../Components/Utils/QuestionsApi";
+import { useDebounce } from "../Hooks/useDebounce";
+import { FetchQuestionData } from "../Components/Utils/Questions/FetchQuestionData";
 
 export const Quiz: React.FC = () => {
   const [{ status, participant, questions, index }, dispatch] = useReducer(
@@ -20,17 +20,12 @@ export const Quiz: React.FC = () => {
 
   const numberOfQuestions = questions.length;
 
-  useEffect(function () {
-    const fetchQuestions = async () => {
-      try {
-        const data = await getQuestions();
-        dispatch({ type: QuizActionType.DataReceived, payload: data });
-      } catch (error) {
-        dispatch({ type: QuizActionType.DataFail, payload: error.message });
-      }
-    };
+  const debouncedFetchQuestionsData = useDebounce(
+    async () => await FetchQuestionData(dispatch)
+  );
 
-    fetchQuestions();
+  useEffect(() => {
+    debouncedFetchQuestionsData();
   }, []);
 
   return (

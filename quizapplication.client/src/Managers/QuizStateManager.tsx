@@ -5,7 +5,7 @@ import { QuizAction } from "../Interfaces/QuizAction";
 import { QuizActionType } from "../Constants/QuizActionType";
 import { QuizStatus } from "../Constants/QuizStatus";
 
-export function quizStateManager(state: QuizState, action: QuizAction) {
+export const quizStateManager = (state: QuizState, action: QuizAction): QuizState => {
   switch (action.type) {
     case QuizActionType.DataReceived:
       return {
@@ -29,9 +29,9 @@ export function quizStateManager(state: QuizState, action: QuizAction) {
         participant: {
           ...state.participant,
           finalAnswers: [
-            ...state.participant.finalAnswers,
+            ...state.participant.finalAnswers as string[],
             action.payload as string[],
-          ],
+          ] as string[],
         },
         index: state.index + 1,
       };
@@ -41,9 +41,9 @@ export function quizStateManager(state: QuizState, action: QuizAction) {
         participant: {
           ...state.participant,
           finalAnswers: [
-            ...state.participant.finalAnswers,
+            ...state.participant.finalAnswers as string[],
             action.payload as string[],
-          ],
+          ] as string[],
         },
         status: QuizStatus.Finished,
       };

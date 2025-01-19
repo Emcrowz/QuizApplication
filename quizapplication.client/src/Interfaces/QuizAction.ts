@@ -4,5 +4,11 @@ import { Question } from "../Models/Question";
 
 export interface QuizAction {
   type: QuizActionType;
-  payload?: Question[] | Question | Participant[] | Participant | string[];
+  payload?:
+    | Question[]
+    | Question
+    | Participant[]
+    | Participant
+    | string[]
+    | string;
 }
